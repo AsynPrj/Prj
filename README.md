@@ -2,9 +2,7 @@
 Project for Event-drive Asynchronous Programming.
 
 ### Members
-<ruby>
- <- [YolandaW](https://github.com/YolandaWEI) ><rp>(</rp>Yuyao WEI<rp>)</rp></rt>
-</ruby> 
+ - [YolandaW](https://github.com/YolandaWEI)
  - [captainneko](https://github.com/captainneko)
  - [PrincQiWang](https://github.com/PrinceQiWang)
  

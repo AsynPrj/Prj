@@ -15,36 +15,36 @@ Project for Event-drive Asynchronous Programming.
 
 1. examine the subject in detail
 
- We want to build a Hexo web dashboard which is used for manage Hexo Blog. 
+   We want to build a Hexo web dashboard which is used for manage Hexo Blog. 
 
- Hexo is a static blog which is based on Node.js to rendering md file fo html. Connect with Git-page, we could easy deploy our personal blog. But there is no back-end or admin management system to use GUI manage blog page. Each post article need to be rendered in terminal by command 'hexo g'. So we want to build a repo for Hexo to use GUI manage the blog pages.
+   Hexo is a static blog which is based on Node.js to rendering md file fo html. Connect with Git-page, we could easy deploy our personal blog. But there is no back-end or admin management system to use GUI manage blog page. Each post article need to be rendered in terminal by command 'hexo g'. So we want to build a repo for Hexo to use GUI manage the blog pages.
 
 2. identify the main problem (the goal)
 
- There already exist two Git repos about Hexo-admin while they are too difficult to use. We analysed their structures and decided to use our own designed structure but we weill reference their codes.
+   There already exist two Git repos about Hexo-admin while they are too difficult to use. We analysed their structures and decided to use our own designed structure but we weill reference their codes.
 
- Hexo use twice renderings and the first time is to render `post` (which is a md file) to `article` which is a kind of yml style and the second rendering is transfer `article` by the yml css style into html.
+   Hexo use twice renderings and the first time is to render `post` (which is a md file) to `article` which is a kind of yml style and the second rendering is transfer `article` by the yml css style into html.
 
- Our Main goal is to manage ( to add, delete, deploy, search article page and etc ).
+   Our Main goal is to manage ( to add, delete, deploy, search article page and etc ).
 
 3. break it down into sub-problems (sub-goals)
 
- Our sub-goal is to edit md file, and  render the page to html on real-time.
+   Our sub-goal is to edit md file, and  render the page to html on real-time.
 
-- classify articles and organized them
-- use GUI to DIY models on Home Page and Article Page
-- develop a GUI page to make own css style pages.
-- use dynamic third-part plugins to manage comments.
+    - classify articles and organized them
+    - use GUI to DIY models on Home Page and Article Page
+    - develop a GUI page to make own css style pages.
+    - use dynamic third-part plugins to manage comments.
 
 4. with the help of information reserach
 
- [HEXO Official Docs](https://hexo.io/api/index.html)
+     [HEXO Official Docs](https://hexo.io/api/index.html)
 
- [HEXO admin repo](https://github.com/jaredly/hexo-admin)
+     [HEXO admin repo](https://github.com/jaredly/hexo-admin)
 
 5. as issues emerge
 
- We need to spent a lot of time reading HEXO API documents.
+    We need to spend a lot of time reading HEXO API documents.
 
 ## Design
 

@@ -1,8 +1,10 @@
 # Hexo Dashboard
-project for Event-drive Asynchronous Programming
+Project for Event-drive Asynchronous Programming.
 
 ### Members
- - [YolandaW](https://github.com/YolandaWEI) 
+<ruby>
+ <- [YolandaW](https://github.com/YolandaWEI) ><rp>(</rp>Yuyao WEI<rp>)</rp></rt>
+</ruby> 
  - [captainneko](https://github.com/captainneko)
  - [PrincQiWang](https://github.com/PrinceQiWang)
  

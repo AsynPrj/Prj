@@ -63,4 +63,7 @@ Project for Event-drive Asynchronous Programming.
 5. include in this agenda regular intermediate points of team,physical or remote, to make a point of progress on the current phase and specify the collective and individual objectives for the next sprint. A weekly frequency is a good frequency.
 
 
-
+## Define an initial prototype
+1. Define a viable functional subset（分组） that immediately allows for usage testing
+specify the outlines（轮廓，略图） and the functional contents (detailed functionalities, scenario（设想的情况） of interaction（交互） with the user).
+2. concrete（具体的） answer with a detailed action plan distributed on the whole team to the question of 'how is this prototype made tomorrow?'

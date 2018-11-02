@@ -12,7 +12,7 @@ function admin(response,params){
     console.log("Excuting home for handler.")
     response.writeHead(200,{'Content-Type':'application/json'}); 
     //fs.createReadStream(PATH.resolve(__dirname, '../user/admin.html'),'utf-8');
-    fs.createReadStream(PATH.resolve(__dirname, '../test/test.json'),'utf-8').pipe(response);
+    //fs.createReadStream(PATH.resolve(__dirname, '../test/test.json'),'utf-8').pipe(response);
     response.end(JSON.stringify(params));
 }
 

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit</title>
+    <link rel="stylesheet" href="./../lib/bower_components/editor.md/examples/css/style.css" />
+    <link rel="stylesheet" href="./../lib/bower_components/editor.md/css/editormd.css" />
+    <script src="./../lib/bower_components/editor.md/examples/js/zepto.min.js"></script>
+    <script src="./../lib/bower_components/editor.md/editormd.js"></script>
+    <style type="text/css">
+        .markdown-body{
+            width: 50%;
+            margin: 30px auto;
+        }
+    </style>
+</head>
+<body>
+ <div class="markdown-body editormd-preview-container">
+     <h2 id="h2-kek">
+         <a name="kek" class="reference-link"></a>
+         <span class="header-link octicon octicon-link"></span>kek</h2>
+         <p>Wad</p>
+     <div class="markdown-toc editormd-markdown-toc">
+         <ul class="markdown-toc-list">
+             <li><a class="toc-level-2" href="#kek" level="2">kek</a>
+                <ul>
+
+                </ul>
+            </li>
+         </ul>
+    </div>
+    <pre class="prettyprint linenums prettyprinted">
+        <ol class="linenums">
+            <li class="L0">
+                <code class="lang-javascript">
+                    <span class="kwd">var</span>
+                    <span class="pln"> i </span>
+                    <span class="pun">=</span>
+                    <span class="pln"> </span>
+                    <span class="lit">0</span>
+                    <span class="pun">;</span>
+                </code>
+            </li>
+        </ol>
+    </pre>
+ </div>  
+ <script type="text/javascript">
+    var testEditor;
+    
+    $(function() {
+        $.get("./test.md", function(md) {
+            testEditor = editormd("test-editormd", {
+                width  : "90%",
+                height : 720,
+                markdown : "#### Setting\r\n\r\n    {\n        codeFold : true\n    }\r\n\r\n" + md,
+                codeFold : true,
+                htmlDecode : true,
+                tex : true,
+                taskList : true,
+                emoji : true,
+                flowChart : true,
+                sequenceDiagram : true,
+                path   : '../lib/'
+            });
+        });
+    });
+</script>
+</body>
+</html>

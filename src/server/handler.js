@@ -37,7 +37,9 @@ function tags(response,params){
 function edit(response,params){
     console.log("Excuting edit for handler.")
     response.writeHead(200,{'Content-Type':'text/html'}); 
-    fs.createReadStream(PATH.resolve(__dirname, '../user/edit.html'),'utf-8').pipe(response);
+   // fs.createReadStream(PATH.resolve(__dirname, '../user/edit.html'),'utf-8').pipe(response);
+    fs.createReadStream(PATH.resolve(__dirname, '../lib/bower_components/editor.md/examples/code-fold.html'),'utf-8').pipe(response);
+
 }
 
 

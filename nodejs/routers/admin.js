@@ -3,7 +3,7 @@ var router = express.Router();
 var swig = require('swig');
 var User=require('../models/User');
 var Category=require('../models/Category');
-var bodyParser=require('body-parser');
+var Content=require('../models/Content');
 
 router.use (function(req,res,next){
     if(!req.userInfo.isAdmin){
@@ -193,16 +193,149 @@ router.get('/category/delete',function(req,res,next){
 
 //homepage of the blog content
 router.get('/content',function(req,res,next){
-    res.render('admin/content_index',{
-        userInfo:req.userInfo,
-    });            
+    var page=Number(req.query.page||1);
+    var limit=10;  
+    var pages=0;
+    Content.count().then(function(count){
+        pages=Math.ceil(count/limit);
+        page=Math.min(page,pages);
+        page=Math.max(page,1);
+        var skip=(page-1)*limit;
+        // Content.find().sort({_id:-1}).limit(limit).skip(skip).then(function(contents){
+        Content.find().sort({_id:-1}).limit(limit).skip(skip).populate('category').then(function(contents){       
+            res.render('admin/content_index',{
+             userInfo:req.userInfo,
+             contents:contents,
+             page:page,
+             pages:pages,
+             count:count,
+             limit:limit,
+            });
+        });
+    });             
 });
 
 //add blog content
 router.get('/content/add',function(req,res,next){
-    res.render('admin/content_add',{
+    //get the category
+    Category.find().sort({_id:-1}).then(function(categories){
+        res.render('admin/content_add',{
+            userInfo:req.userInfo,
+            categories:categories,
+        });   
+    });           
+});
+
+//save the content added
+router.post('/content/add',function(req,res,next){
+    if(req.body.category ==''){
+        res.render('admin/error',{
+            userInfo:req.userInfo,
+            message:'category cannot be empty.',
+        });
+        return;
+    }
+    if(req.body.title ==''){
+        res.render('admin/error',{
+            userInfo:req.userInfo,
+            message:'title cannot be empty.',
+        });
+        return;
+    } 
+     new Content(
+       {
+            category: req.body.category,
+            title: req.body.title,
+            description: req.body.description,
+            content: req.body.content
+        })
+        .save().then(function(rs){
+        res.render('admin/success',{
         userInfo:req.userInfo,
-    });            
+        message:'succeed in saving this content.',
+        url:'/admin/content'
+        });
+   });            
+});
+
+
+//edit a content
+router.get('/content/edit',function(req,res,next){
+    var id = req.query.id||'';
+    var categories=[];
+    //get the category
+    Category.findOne().sort({_id:-1}).then(function(rs){
+        categories=rs;
+        return Content.findOne({
+            _id:id,
+        })
+        .populate('category');
+    }).then(function(content){
+            if(!content){
+                res.render('admin/error',{
+                    userInfo:req.userInfo,
+                    message:'this content does not exist.'
+                }); 
+                return Promise.reject();         
+                }else{
+                    res.render('admin/content_edit',{
+                        userInfo:req.userInfo,
+                        content:content,
+                        categories:categories,
+                    }); 
+            }
+        }); 
+        // res.render('admin/content_edit',{
+        //     userInfo:req.userInfo,
+        //     categories:categories,
+        // });     
+});
+
+
+//save the content edited
+router.post('/content/edit',function(req,res,next){
+    var id = req.query.id||'';
+    if(req.body.category==''){
+        res.render('admin/error',{
+            userInfo:req.userInfo,
+            message:'category cannot be empty.',
+        });
+        return;
+    }
+    if(req.body.title==''){
+        res.render('admin/error',{
+            userInfo:req.userInfo,
+            message:'title cannot be empty.',
+        });
+        return;
+    }
+   Content.update(
+       {_id:id},
+       {category: req.body.category,
+       title: req.body.title,
+       description: req.body.description,
+       content: req.body.content},
+    ).then(function(){
+        res.render('admin/success',{
+        userInfo:req.userInfo,
+        message:'succeed in saving this content.',
+        url:'/admin/content/edit?id='+id,
+    });
+   });            
+});
+
+//delete a content
+router.get('/content/delete',function(req,res,next){
+    var id= req.query.id || '';
+    Content.remove({
+       _id:id 
+    }).then(function(rs){      
+            res.render('admin/success',{
+                userInfo:req.userInfo,
+                message:'delete successful.',
+                url:'/admin/content'
+            });            
+    }); 
 });
 
 module.exports=router;

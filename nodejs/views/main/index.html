@@ -1,255 +1,108 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta name="keywords" content="" />
-        <meta name="description" content="" />
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<title>My Blog</title>
-        <link href="http://fonts.googleapis.com/css?family=Arvo" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" type="text/css" href="/public/css/main.css" />
-		<script src="/public/js/jquery-3.3.1.min.js"></script>
-		<script src="/public/js/index.js"></script>
-		
-	
-    </head>
-    <body>
-		<div id="bg">
-			<div id="outer">
-				<div id="header">
-					<div id="logo">
-						<h1>
-							<a href="#">Welcome to My Little Blog!</a>
-						</h1>
-					</div>
-					<div id="nav">
-						<ul>
-							<li class="first active">
-								<a href="/">Home</a>
-							</li>
-							{% for category in categories %}
-							<li>
-								<a href="/">{{category.name}}</a>
-							</li>
-							{% endfor%}
-						</ul>
-						<br class="clear" />
-					</div>
-				</div>
+<html>
 
-				<div id="main">
+<head>
+  <title>night_sky</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>My Blog</title>
+  <link rel="stylesheet" type="text/css" href="../../public/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="/public/css/main.css" />
+  <script src="/public/js/jquery-3.3.1.min.js"></script>
+  <script src="/public/js/index.js"></script>
+</head>
 
-					<div id="content">
-						{% if userInfo._id %}
-							<div  class="rightBox" id="userInfo" >
-									<div class="title"><span>user info </span></div>
-									<p><span class="colDark">{{userInfo.username}}</span></p>
-									{% if userInfo.isAdmin %}
-									<p><span class="colDanger">hello, you are the admin.<a href="/admin">you can click here to enter the manage page.</a></span></p>
-									{% else %}
-									<p><span class="colDanger">hello, Welcome to my blog.</span></p>
-									{% endif %}
-									<p><span class="colDark"><a href="javascript:;" id="logout">logout </a></span></p>
-							</div>
-						{% else %}
-							<div  class="rightBox" id="loginBox" >
-								<div class="title"><span>login</span></div>
-								<div class="line"><span class="colDark">name:</span><input type="text" id = "username1" /><em></em></div>
-								<div class="line"><span class="colDark">password:</span><input type="password" id= "password1"/><em></em></div>
-								<div class="line"><span class="colDark"></span><button id="loginBtn">login</button></div>
-								<p class="textRight">Hasn't registered?<a href="javascript:;" class="colMint">register now!</a> </p>
-								<p class = "colWarning textCenter" ></p>		
-							</div>
-							<div  class="rightBox" id="registerBox" >
-									<div class="title"><span>register</span></div>
-									<div class="line"><span class="colDark">name:</span><input type="text" id= "username"/><em></em></div>
-									<div class="line"><span class="colDark">password:</span><input type="password" id= "password"/><em></em></div>
-									<div class="line"><span class="colDark">confirm password:</span><input type="password" id= "repassword"/><em></em></div>
-									<div class="line"><span class="colDark"></span><button id="registerBtn">register</button></div>
-									<p class="textRight">Already have an account?<a href="javascript:;" class="colMint">login now!</a> </p>
-									<p class = "colWarning textCenter" ></p>		
-							</div>
-						{%endif%}
-						<div id="box1">
-							<h2>
-								Introduction
-							<!-- </h2><img class="left" src="images/pic2.jpg" width="100" height="100" alt="" /> -->
-							<p>
-								This is a blog system designed by <strong>Team Anonymous</strong>, 
-								a 3 people team from EFREI. This is the project for the cours Event-driven Asynchrone Programmming.
-							</p>
-						</div>
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="index.html">night<span class="logo_colour">_sky</span></a></h1>
+          <h2>Simple. Contemporary. Website Template.</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+            {% for category in categories %}
+            <li><a href="/">{{category.name}}</a></li>
+            {% endfor%}
+        </ul>
+      </div>
+    </div>
+	<div class="inner_copyright">Collect from <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a></div>
+    <div id="site_content">
+      <div class="sidebar">
+          <h1>Search</h1>
+          <form method="post" action="#" id="search_form">
+            <p><input class="search" type="text" name="search_field" value="Search" /></p>
+          </form>
+          {% if userInfo._id %}
+            <div  class="rightBox" id="userInfo" >
+                <div class="title"><span>user info </span></div>
+                <p><span class="colDark">{{userInfo.username}}</span></p>
+                {% if userInfo.isAdmin %}
+                <p><span class="colDanger">hello, you are the admin.<a href="/admin">you can click here to enter the manage page.</a></span></p>
+                {% else %}
+                <p><span class="colDanger">hello, Welcome to my blog.</span></p>
+                {% endif %}
+                <p><span class="colDark"><a href="javascript:;" id="logout">logout </a></span></p>
+            </div>
+          {% else %}
+          <div  class="rightBox" id="loginBox" >
+              <div class="title"><span>login</span></div>
+              <div class="line"><span class="colDark">name:</span><input type="text" id = "username1" /><em></em></div>
+              <div class="line"><span class="colDark">password:</span><input type="password" id= "password1"/><em></em></div>
+              <div class="line"><span class="colDark"></span><button id="loginBtn">login</button></div>
+              <p class="textRight">Hasn't registered?<a href="javascript:;" class="colMint">register now!</a> </p>
+              <p class = "colWarning textCenter" ></p>		
+            </div>
+            <div  class="rightBox" id="registerBox" >
+                <div class="title"><span>register</span></div>
+                <div class="line"><span class="colDark">name:</span><input type="text" id= "username"/><em></em></div>
+                <div class="line"><span class="colDark">password:</span><input type="password" id= "password"/><em></em></div>
+                <div class="line"><span class="colDark">confirm password:</span><input type="password" id= "repassword"/><em></em></div>
+                <div class="line"><span class="colDark"></span><button id="registerBtn">register</button></div>
+                <p class="textRight">Already have an account?<a href="javascript:;" class="colMint">login now!</a> </p>
+                <p class = "colWarning textCenter" ></p>		
+            </div>
+          {%endif%}
+      </div>
+      <div id="content">
+          {% for content in contents %}
+          <div class="listBox">
+            <h1>{{content.title}}</h1>
+            <p class="colDefault">
+              <span class="colInfo">{{content.user.username}}</span>
+              &nbsp;creat at<span class="colInfo">{{content.addTime|date('YYYY:MMM:DD')}}</span>
+              &nbsp;Visitors:<span class="colInfo">{{content.view}}</span>
+              <!-- &nbsp;Comments:<span class="colInfo">{{}}</span> -->
+              <!--to do-->
+            </p>
+            <dfn><p>{{content.description}}<p></dfn>
+            <!-- <div class="function"><a href="/view/">Read more</a></div> -->
+            <!--to do-->
+          </div>
+          {% endfor %}
+          <p></p>
+          <div class="tagsPage">
+              {% if page<=1 %}{%else%}
+              <li><a href="/?page={{page-1}}">PREV</a></li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+              <li><span>{{page}}/{{pages}}</span></li>
+              {% endif %}
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+              {% if page>=pages %}
+              <li> <a href="/?page={{page+1}}">NEXT</a></li>
+              </div>
 
-						<div id="box2">
-							<h3>
-								Instructions
-							</h3>
-							<p>
-								1. add, delete, modify, search for your blogs as you want!
-								2. tags are free to use!
-								3. see our source codes in GitHub!
-							</p>
-							<ul class="linkedList">
-								<li class="first">
-									<a href="#">Metus semper curabitur varius sit risus pretium condimentum</a>
-								</li>
-								<li>
-									<a href="#">Lorem volutpat mauris nisl neque vivamus pretium</a>
-								</li>
-								<li>
-									<a href="#">Cursus quisque est sodales erat blandit volutpat</a>
-								</li>
-								<li class="last">
-									<a href="#">Ultrices ridiculus ultrices ante tempor magnis</a>
-								</li>
-							</ul>
-						</div>
-
-						
-
-						<br class="clear" />
-					</div>
-
-
-					<div id="sidebar1">
-						<h3>
-							Massa duis nisl
-						</h3>
-						<p>
-							Ornare ridiculus convallis porttitor. Malesuada sem curae condimentum urna sagittis consequat.
-						</p>
-						<ul class="linkedList">
-							<li class="first">
-								<a href="#">Nibh lacus quis veroeros</a>
-							</li>
-							<li>
-								<a href="#">Risus elementum et tristique</a>
-							</li>
-							<li class="last">
-								<a href="#">Mattis et curabitur pretium</a>
-							</li>
-						</ul>
-						<h3>
-							Gravida proin
-						</h3>
-						<ul class="linkedList">
-							<li class="first">
-								<a href="#">Malesuada sit phasellus et vivamus consequat</a>
-							</li>
-							<li>
-								<a href="#">Lorem magnis cubilia lacus</a>
-							</li>
-							<li>
-								<a href="#">Ultricies neque praesent</a>
-							</li>
-							<li>
-								<a href="#">Viverra ligula amet enim</a>
-							</li>
-							<li>
-								<a href="#">Nibh amet nisl veroeros</a>
-							</li>
-							<li>
-								<a href="#">Vestibulum diam porttitor</a>
-							</li>
-							<li>
-								<a href="#">Cras mollis et lacinia</a>
-							</li>
-							<li>
-								<a href="#">Felis mollis consequat</a>
-							</li>
-							<li class="last">
-								<a href="#">Aenean consequat purus</a>
-							</li>
-						</ul>
-					</div>
-
-					<div id="sidebar2">
-						<h3>
-							Lorem lobortis
-						</h3>
-						<ul class="linkedList">
-							<li class="first">
-								<a href="#">Tempus congue ultrices</a>
-							</li>
-							<li>
-								<a href="#">Nibh amet nisl veroeros</a>
-							</li>
-							<li>
-								<a href="#">Vestibulum diam porttitor</a>
-							</li>
-							<li>
-								<a href="#">Cras mollis et lacinia</a>
-							</li>
-							<li>
-								<a href="#">Nibh amet nisl veroeros</a>
-							</li>
-							<li>
-								<a href="#">Vestibulum diam porttitor</a>
-							</li>
-							<li class="last">
-								<a href="#">Sodales amet sed magna</a>
-							</li>
-						</ul>
-						<h3>
-							Venenatis lacinia sed amet ultricies
-						<!-- </h3><img class="top" src="images/pic3.jpg" width="224" height="96" alt="" /> -->
-						<p>
-							Augue porta ultrices volutpat tempor mattis sed aliquam. Malesuada a orci diam luctus sagittis.
-							Vulputate dolor sed penatibus sociis et convallis. Ornare blandit mollis natoque. Rutrum pharetra 
-							pellentesque. Aliquam consequat parturient aliquam. Mauris montes sed consequat mattis pulvinar
-							penatibus elit aenean amet porttitor. Phasellus pulvinar consectetur sed veroeros.
-						</p>
-					</div>
-					<br class="clear" />
-				</div>
-				<div id="footer">
-					<div id="footerContent">
-						<h3>
-							Euismod varius urna condimentum
-						</h3>
-						<p>
-							Rutrum pharetra vulputate pellentesque. Aliquam consequat parturient aliquam. Mauris montes 
-							consequat mattis pulvinar feugiat vestibulum vel lectus molestie pulvinar primis 
-							lorem. Pharetra nisl amet tempor penatibus elit aenean porttitor. Phasellus pulvinar consectetur.
-						</p>
-					</div>
-					<div id="footerSidebar1">
-						<h3>
-							Malesuada facilisis
-						</h3>
-						<ul class="linkedList">
-							<li class="first">
-								<a href="#">Urna laoreet consequat</a>
-							</li>
-							<li>
-								<a href="#">Dictum vel lore msodales</a>
-							</li>
-							<li class="last">
-								<a href="#">Dignissim et justo etiam</a>
-							</li>
-						</ul>
-					</div>
-					<div id="footerSidebar2">
-						<h3>
-							Dolore sed pulvinar
-						</h3>
-						<ul class="linkedList">
-							<li class="first">
-								<a href="#">Placerat lorem primis</a>
-							</li>
-							<li>
-								<a href="#">Faucibus id amet rutrum</a>
-							</li>
-							<li class="last">
-								<a href="#">Aliquet sed ullamcorper</a>
-							</li>
-						</ul>
-					</div>
-					<br class="clear" />
-				</div>
-			</div>
-			<div id="copyright">
-				&copy; My Little Blog | Designed by Team Anonymous.
-			</div>
-		</div>
-    </body>
+      </div>
+    </div>
+    <div id="footer">
+      <p>Template &copy; night_sky HTML5 | <a href="#">Efrei Blog</a> </p>
+    </div>
+  </div>
+</body>
 </html>

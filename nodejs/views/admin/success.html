@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block main%}
+
+<ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><span>success</span></li>
+       
+ </ol>
+
+ <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">success</h3>
+                </div>
+                <div class="panel-body">
+                  {{message}}
+                </div>
+                <div class="panel-footer">
+                     <a href= "javascript:window.history.back();">return to the previous page </a>
+                </div>
+              </div>
+ {%endblock%}

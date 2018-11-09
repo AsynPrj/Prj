@@ -18,12 +18,12 @@
     <label for="name">category</label>
     <select name="category" id="category" class="form-control">
       {% for category in categories %}
-        {% if content.category._id.toString() == category._id.toString()%}
+        {% if content.category._id.toString() == categories._id.toString() %}
           <option value="{{category.id}}" selected>{{category.name}}</option>
-        {%else%}
+        {% else %}
           <option value="{{category.id}}">{{category.name}}</option>
-        {%endif%}
-      {%endfor%}
+        {% endif %}
+      {% endfor %}
     </select>
   </div>
 
@@ -34,8 +34,8 @@
   </div>
 
   <div class="form-group">
-    <label for="discription">discription</label>
-    <textarea name="discription" id="discription" class="form-control" rows="5">{{content.discription}}</textarea>
+    <label for="description">description</label>
+    <textarea name="description" id="description" class="form-control" rows="5">{{content.description}}</textarea>
   </div>
 
   <div class="form-group">

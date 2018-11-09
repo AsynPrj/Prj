@@ -193,6 +193,7 @@ router.get('/category/delete',function(req,res,next){
 
 //homepage of the blog content
 router.get('/content',function(req,res,next){
+   
     var page=Number(req.query.page||1);
     var limit=10;  
     var pages=0;
@@ -200,20 +201,19 @@ router.get('/content',function(req,res,next){
         pages=Math.ceil(count/limit);
         page=Math.min(page,pages);
         page=Math.max(page,1);
-        var skip=(page-1)*limit;
-        // Content.find().sort({_id:-1}).limit(limit).skip(skip).then(function(contents){
+        var skip=(page-1)*limit; 
         Content.find().sort({_id:-1}).limit(limit).skip(skip).populate('category').then(function(contents){       
-            res.render('admin/content_index',{
-             userInfo:req.userInfo,
-             contents:contents,
-             page:page,
-             pages:pages,
-             count:count,
-             limit:limit,
-            });
+                    res.render('admin/content_index',{
+                        userInfo:req.userInfo,
+                        contents:contents,
+                        page:page,
+                        pages:pages,
+                        count:count,
+                        limit:limit,
+                    });                                 
         });
-    });             
-});
+    });     
+});         
 
 //add blog content
 router.get('/content/add',function(req,res,next){
@@ -264,12 +264,11 @@ router.get('/content/edit',function(req,res,next){
     var id = req.query.id||'';
     var categories=[];
     //get the category
-    Category.findOne().sort({_id:-1}).then(function(rs){
+    Category.find().sort({_id:-1}).then(function(rs){
         categories=rs;
         return Content.findOne({
             _id:id,
-        })
-        .populate('category');
+        }).populate('category');
     }).then(function(content){
             if(!content){
                 res.render('admin/error',{
@@ -282,7 +281,7 @@ router.get('/content/edit',function(req,res,next){
                         userInfo:req.userInfo,
                         content:content,
                         categories:categories,
-                    }); 
+                    });                  
             }
         }); 
         // res.render('admin/content_edit',{

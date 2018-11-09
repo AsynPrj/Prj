@@ -22,8 +22,8 @@
         {% for content in contents %}
         <tr>
                 <td>{{content._id.toString()}}</td>
-                <!-- <td>{{content.category.name}}</td> -->
-                <td>{{content.category._id.toString()}}</td>
+                <td>{{content.category.name}}</td>
+                <!-- <td>{{content.category._id.toString()}}</td> -->
                 <td>{{content.title}}</td>
                 <td>
                         <a href="/admin/content/edit?id={{content._id.toString()}}">edit</a> |

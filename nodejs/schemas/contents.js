@@ -5,7 +5,7 @@ module.exports=mongoose.Schema({
 
     category:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Content' ,
+        ref: 'Category',
     },
     
     title: {
@@ -13,7 +13,7 @@ module.exports=mongoose.Schema({
         default:'',       
     },
 
-    discription:{
+    description:{
         type:String,
         default:'',       
     },

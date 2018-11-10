@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block main%}
+
+<ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/admin/content">blog list</a></li>
+        <li><span>add blog</span></li>
+       
+ </ol>
+
+ <h3>
+         add blog
+ </h3>
+ 
+
+ <form role="form" method="POST">
+
+        <div class="form-group">
+                <label for="name">category</label>
+                <select name="category" id="category" class="form-control">
+                    {% for category in categories %}
+                    <option value="{{category.id}}">{{category.name}}</option>
+                    {%endfor%}
+                </select>
+              </div>
+
+        <div class="form-group">
+          <label for="title">title</label>
+          <input type="text" class="form-control" id="title" placeholder="please input the title of the blog" name= "title">
+        </div>
+
+        <div class="form-group">
+                <label for="description">description</label>
+                <textarea name="description" id="description" class="form-control" rows="5" 
+                placeholder="please input the description of this blog"></textarea>
+        </div>
+
+         <div class="form-group">
+            <label for="content">content</label> 
+            <textarea name="content" id="content" class="form-control" rows="10" 
+            placeholder="please input the content of this blog"></textarea>
+        </div>
+       
+        <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+              
+{%endblock%}

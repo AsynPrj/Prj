@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  {% for content in contents %}
+  <li>
+    <h3 class="blogtitle"><a href="/view/?contentId={{content._id.toString()}}">{{content.title}}</a></h3>
+    <div class="bloginfo">
+      <p>{{content.description}}</p>
+    </div>
+    <div class="autor">
+      <p>
+      <span class="author">{{content.user.username}}</span>
+      <span class="lm"><a href="/" title="CSS3|Html5" target="_blank" class="classname">CSS3|Html5</a></spanspan>
+      <span class="dtime">{{content.addTime|date('YYYY:MMM:DD')}}</span>
+      <span class="viewnum">Visitors:<a href="/">{{content.view}}</a></span>
+      <span class="readmore"><a href="/view/?contentId={{content._id.toSting()}}">ReadMore</a></span></div>
+      </p>
+    </li>
+  {% endfor %}
+
+{% endblock %} 

@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="gb2312">
+<title>blog</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../../public/css/base.css" rel="stylesheet">
+<link href="../../public/css/index.css" rel="stylesheet">
+<link href="../../public/css/m.css" rel="stylesheet">
+<script src="/public/js/jquery-3.3.1.min.js"></script>
+<script src="/public/js/index.js"></script>
+
+<!--[if lt IE 9]>
+<script src="js/modernizr.js"></script>
+<![endif]-->
+</head>
+<body>
+<header>
+  <div class="tophead">
+    <nav class="menu" id="topnav">
+      {% if category %}
+      <ul>
+          <li><a href="/" class="focus">HOME</a><li>
+      {% else %}
+      <ul>
+          <li><a href="/">HOME</a><li>
+      {% endif %}
+        {% for cate in categories %}
+          {% if category == cate.id %}
+          <li><a href="/?category={{cate.id}}" class="focus">{{cate.name}}</a></li>
+          {% else %}
+          <li><a href="/?category={{cate.id}}">{{cate.name}}</a></li>
+          {% endif %}
+        {% endfor%}
+      </ul>
+    </nav>
+  </div>
+</header>
+<div class="picshow"></div>
+<article>
+  <div class="blogs">
+      {% block content %}{% endblock %}
+  </div>
+
+  <div class="sidebar">
+      {% if userInfo._id %}
+      <div  class="aboutme" id="userInfo" >
+          <p><span class="colDark">{{userInfo.username}}</span></p>
+          {% if userInfo.isAdmin %}
+          <p><span class="colDanger">hello,admin.<a href="/admin">Manage</a></span></p>
+          {% else %}
+          <p><span class="colDanger">hello {{userInfo.username}}, Welcome to my blog.</span></p>
+          {% endif %}
+          <p><span class="colDark"><a href="javascript:;" id="logout">logout </a></span></p>
+      </div>
+     {% else %}
+       <div  class="aboutme" id="loginBox" >
+        <div class="title"><span>login</span></div>
+        <div class="line"><span class="colDark"></span><input type="text" id = "username1" placeholder="NAME"/><em></em></div>
+        <div class="line"><span class="colDark"></span><input type="password" id= "password1" placeholder="PASSWORDS"/><em></em></div>
+        <div class="line"><span class="colDark"></span><button id="loginBtn">login</button></div>
+        <p class="textRight"><a href="javascript:;" class="colMint">register now!</a> </p>
+        <p class = "colWarning textCenter"></p>		
+      </div>
+      <div  class="aboutme" id="registerBox" >
+          <div class="title"><span>register</span></div>
+          <div class="line"><input type="text" id= "username" placeholder="NAME"/><em></em></div>
+          <div class="line"><input type="password" id= "password" placeholder="PASSWORDS"/><em></em></div>
+          <div class="line"><input type="password" id= "repassword" placeholder="CONFIRM PASSWORDS"/><em></em></div>
+          <div class="line"><button id="registerBtn">register</button></div>
+          <p class="textRight">Already have an account?<a href="javascript:;" class="colMint">login now!</a> </p>
+          <p class = "colWarning textCenter" ></p>		
+      </div>
+      {%endif%}
+   
+    
+    <div class="search">
+      <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
+        <input name="keyboard" id="keyboard" class="input_text" value="Print" style="color: rgb(153, 153, 153);" onfocus="if(value=='Print'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='Print'}" type="text">
+        <input name="show" value="title" type="hidden">
+        <input name="tempid" value="1" type="hidden">
+        <input name="tbname" value="news" type="hidden">
+        <input name="Submit" class="input_submit" value="Search" type="submit">
+      </form>
+    </div>
+    <div class="cloud">
+      <h2 class="hometitle">Tags</h2>
+      <ul>
+        <a href="/">html5</a> 
+        <a href="/">SumSung</a> 
+      </ul>
+    </div>
+  </div>
+
+</article>
+<div class="blank"></div>
+<footer>
+  <p>Theme:GoodMorning by Yang Qing</a></p>
+</footer>
+<script src="../../public/js/nav.js"></script>
+</body>
+</html>

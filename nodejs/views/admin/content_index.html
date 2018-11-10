@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block main%}
+<ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><span>content list</span></li>
+        <li><a href="/admin/content/add">add content</a></li>
+ </ol>
+
+ <h3>
+         content list
+ </h3>
+ <table class = " table table-hover table-stripted">
+
+        <tr>
+                <th>ID</th>
+                <th>category</th>
+                 <th>title</th>             
+                <th>operation</th>
+        </tr>
+        
+        {% for content in contents %}
+        <tr>
+                <td>{{content._id.toString()}}</td>
+                <td>{{content.category.name}}</td>
+                <!-- <td>{{content.category._id.toString()}}</td> -->
+                <td>{{content.title}}</td>
+                <td>
+                        <a href="/admin/content/edit?id={{content._id.toString()}}">edit</a> |
+                        <a href="/admin/content/delete?id={{content._id.toString()}}">delete</a>
+                </td>
+        </tr>
+        {% endfor %}
+
+ </table>
+
+ {% include 'page.html' %}
+
+              
+{% endblock %}

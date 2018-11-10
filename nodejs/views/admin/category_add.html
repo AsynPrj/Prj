@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block main%}
+
+<ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/admin/category">category list</a></li>
+        <li><span>add category</span></li>
+       
+ </ol>
+
+ <h3>
+         add category
+ </h3>
+ 
+
+ <form role="form" method="POST">
+        <div class="form-group">
+          <label for="name">category name</label>
+          <input type="text" class="form-control" id="name" placeholder="please input the name of the category" name= "name">
+        </div>
+       
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+
+              
+{%endblock%}

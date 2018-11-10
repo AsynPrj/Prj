@@ -1,3 +1,4 @@
+'use strict';
 var express = require('express');
 var router = express.Router();
 var User = require('../models/User');
@@ -16,19 +17,19 @@ router.post('/user/register',function(req,res,next){
     var username= req.body.username;
     var password= req.body.password;
     var repassword= req.body.repassword;
-    if(username==''){
+    if(username===''){
         responseData.code=1;
         responseData.message="the username can't be empty";
         res.json(responseData);
         return;
     } 
-    if(password==''){
+    if(password===''){
         responseData.code=2;
         responseData.message="the password can't be empty";
         res.json(responseData);
         return;
     } 
-    if (password!=repassword){
+    if (password!==repassword){
         responseData.code=3;
         responseData.message="the passwords are not the same";
         res.json(responseData);
@@ -58,7 +59,7 @@ router.post('/user/register',function(req,res,next){
 router.post('/user/login',function(req,res,next){
     var username= req.body.username;
     var password= req.body.password;
-    if(username==''||password==''){
+    if(username===''||password===''){
         responseData.code=1;
         responseData.message="the username and password can't be empty";
         res.json(responseData);

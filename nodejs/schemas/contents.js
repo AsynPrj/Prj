@@ -1,26 +1,26 @@
-
+'use strict';
 var mongoose=  require('mongoose');
 
 module.exports=mongoose.Schema({
 
     category:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Category',
+        ref: 'Category'
     },
     
     title: {
         type:String,
-        default:'',       
+        default:''       
     },
 
     description:{
         type:String,
-        default:'',       
+        default:''      
     },
     
     content:{
         type:String,
-        default:'',     
+        default:''    
     }
 });
 

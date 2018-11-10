@@ -1,16 +1,20 @@
-  //entry of this application
+'use strict';
+
+  //load all required modules
+  //entry of this application 
   var express = require('express');
   var swig = require('swig');
   var mongoose=  require('mongoose');
   var bodyParser=require('body-parser');
   var Cookies= require('cookies');
   var User=require('./models/User');
-  //var multer=require('multer');//用于向浏览器上传文件
+  //var multer=require('multer'); //use to upload file by browser
   //var fs = require('fs');
   
   //create application named 'app' => NodeJS Http.createSever();
   var app = express();
-
+  
+  //static file hosting
   app.use('/public', express.static(__dirname + '/public'));
 
   //define the type of this mudule engine which is 'html'
@@ -34,7 +38,7 @@
             User.findById(req.userInfo._id).then(function(userInfo){
                 req.userInfo.isAdmin=Boolean(userInfo.isAdmin);
                 next();
-            })
+            });
          } catch(e){ next();}
     } else{
         next();
@@ -45,13 +49,13 @@
   app.use('/api',require('./routers/api'));
   app.use('/',require('./routers/main'));
 
-
+ //connect to mongoose and the listen to 8888
   mongoose.connect('mongodb://localhost:27017/blog', function(err){
       if(err){
-          console.log('fail to connect to the database.')
+          console.log('fail to connect to the database.');
       }else{
-        console.log('success to connect to the database.')
-        app.listen(8888);
+        console.log('success to connect to the database.');
+        app.listen(8888); 
       }
   });
   

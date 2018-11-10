@@ -1,108 +1,21 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<html>
+{% extends 'layout.html' %}
 
-<head>
-  <title>night_sky</title>
-  <meta name="description" content="website description" />
-  <meta name="keywords" content="website keywords, website keywords" />
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <title>My Blog</title>
-  <link rel="stylesheet" type="text/css" href="../../public/css/style.css" />
-  <link rel="stylesheet" type="text/css" href="/public/css/main.css" />
-  <script src="/public/js/jquery-3.3.1.min.js"></script>
-  <script src="/public/js/index.js"></script>
-</head>
+{% block content %}
+  {% for content in contents %}
+  <li>
+    <h3 class="blogtitle"><a href="/view/?contentId={{content._id.toString()}}">{{content.title}}</a></h3>
+    <div class="bloginfo">
+      <p>{{content.description}}</p>
+    </div>
+    <div class="autor">
+      <p>
+      <span class="author">{{content.user.username}}</span>
+      <span class="lm"><a href="/" title="CSS3|Html5" target="_blank" class="classname">CSS3|Html5</a></spanspan>
+      <span class="dtime">{{content.addTime|date('YYYY:MMM:DD')}}</span>
+      <span class="viewnum">Visitors:<a href="/">{{content.view}}</a></span>
+      <span class="readmore"><a href="/view/?contentId={{content._id.toSting()}}">ReadMore</a></span></div>
+      </p>
+    </li>
+  {% endfor %}
 
-<body>
-  <div id="main">
-    <div id="header">
-      <div id="logo">
-        <div id="logo_text">
-          <!-- class="logo_colour", allows you to change the colour of the text -->
-          <h1><a href="index.html">night<span class="logo_colour">_sky</span></a></h1>
-          <h2>Simple. Contemporary. Website Template.</h2>
-        </div>
-      </div>
-      <div id="menubar">
-        <ul id="menu">
-            {% for category in categories %}
-            <li><a href="/">{{category.name}}</a></li>
-            {% endfor%}
-        </ul>
-      </div>
-    </div>
-	<div class="inner_copyright">Collect from <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a></div>
-    <div id="site_content">
-      <div class="sidebar">
-          <h1>Search</h1>
-          <form method="post" action="#" id="search_form">
-            <p><input class="search" type="text" name="search_field" value="Search" /></p>
-          </form>
-          {% if userInfo._id %}
-            <div  class="rightBox" id="userInfo" >
-                <div class="title"><span>user info </span></div>
-                <p><span class="colDark">{{userInfo.username}}</span></p>
-                {% if userInfo.isAdmin %}
-                <p><span class="colDanger">hello, you are the admin.<a href="/admin">you can click here to enter the manage page.</a></span></p>
-                {% else %}
-                <p><span class="colDanger">hello, Welcome to my blog.</span></p>
-                {% endif %}
-                <p><span class="colDark"><a href="javascript:;" id="logout">logout </a></span></p>
-            </div>
-          {% else %}
-          <div  class="rightBox" id="loginBox" >
-              <div class="title"><span>login</span></div>
-              <div class="line"><span class="colDark">name:</span><input type="text" id = "username1" /><em></em></div>
-              <div class="line"><span class="colDark">password:</span><input type="password" id= "password1"/><em></em></div>
-              <div class="line"><span class="colDark"></span><button id="loginBtn">login</button></div>
-              <p class="textRight">Hasn't registered?<a href="javascript:;" class="colMint">register now!</a> </p>
-              <p class = "colWarning textCenter" ></p>		
-            </div>
-            <div  class="rightBox" id="registerBox" >
-                <div class="title"><span>register</span></div>
-                <div class="line"><span class="colDark">name:</span><input type="text" id= "username"/><em></em></div>
-                <div class="line"><span class="colDark">password:</span><input type="password" id= "password"/><em></em></div>
-                <div class="line"><span class="colDark">confirm password:</span><input type="password" id= "repassword"/><em></em></div>
-                <div class="line"><span class="colDark"></span><button id="registerBtn">register</button></div>
-                <p class="textRight">Already have an account?<a href="javascript:;" class="colMint">login now!</a> </p>
-                <p class = "colWarning textCenter" ></p>		
-            </div>
-          {%endif%}
-      </div>
-      <div id="content">
-          {% for content in contents %}
-          <div class="listBox">
-            <h1>{{content.title}}</h1>
-            <p class="colDefault">
-              <span class="colInfo">{{content.user.username}}</span>
-              &nbsp;creat at<span class="colInfo">{{content.addTime|date('YYYY:MMM:DD')}}</span>
-              &nbsp;Visitors:<span class="colInfo">{{content.view}}</span>
-              <!-- &nbsp;Comments:<span class="colInfo">{{}}</span> -->
-              <!--to do-->
-            </p>
-            <dfn><p>{{content.description}}<p></dfn>
-            <!-- <div class="function"><a href="/view/">Read more</a></div> -->
-            <!--to do-->
-          </div>
-          {% endfor %}
-          <p></p>
-          <div class="tagsPage">
-              {% if page<=1 %}{%else%}
-              <li><a href="/?page={{page-1}}">PREV</a></li>
-              <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-              <li><span>{{page}}/{{pages}}</span></li>
-              {% endif %}
-              <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-              {% if page>=pages %}
-              <li> <a href="/?page={{page+1}}">NEXT</a></li>
-              </div>
-
-      </div>
-    </div>
-    <div id="footer">
-      <p>Template &copy; night_sky HTML5 | <a href="#">Efrei Blog</a> </p>
-    </div>
-  </div>
-</body>
-</html>
+{% endblock %} 

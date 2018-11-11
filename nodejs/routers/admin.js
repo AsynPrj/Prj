@@ -204,7 +204,10 @@ router.get('/content',function(req,res,next){
         page=Math.min(page,pages);
         page=Math.max(page,1);
         var skip=(page-1)*limit; 
-        Content.find().sort({_id:-1}).limit(limit).skip(skip).populate('category').then(function(contents){       
+        Content.find().sort({_id:-1}).limit(limit).skip(skip).populate(['category','user']).sort({
+            addTime: -1
+        }).then(function(contents){  
+                //console.log(contents);     
                     res.render('admin/content_index',{
                         userInfo:req.userInfo,
                         contents:contents,
@@ -248,6 +251,7 @@ router.post('/content/add',function(req,res,next){
        {
             category: req.body.category,
             title: req.body.title,
+            user:req.userInfo._id.toString(),
             description: req.body.description,
             content: req.body.content
         })

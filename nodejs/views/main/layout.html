@@ -27,18 +27,23 @@
       <ul>
           <li><a href="/">HOME</a><li>
       {% endif %}
-        {% for cate in categories %}
-          {% if category == cate.id %}
-          <li><a href="/?category={{cate.id}}" class="focus">{{cate.name}}</a></li>
-          {% else %}
-          <li><a href="/?category={{cate.id}}">{{cate.name}}</a></li>
-          {% endif %}
-        {% endfor%}
+
+        {% if userInfo._id %}
+            {% if userInfo.isAdmin %}
+              <li><a href="/admin/content">Manage</a></li>
+            {%else%}
+            {%endif%}
+          <li>{{userInfo.username}},&nbsp;<a href="javascript:;" id="logout">Logout</a></span>
+          </li>
+        {% else %}
+          <li><a href="/login">Login</a></li>
+        {%endif%}
       </ul>
     </nav>
   </div>
 </header>
 <div class="picshow"></div>
+
 <article>
   <div class="blogs">
       {% block content %}{% endblock %}
@@ -46,18 +51,17 @@
 
   <div class="sidebar">
       {% if userInfo._id %}
-      <div  class="aboutme" id="userInfo" >
-          <p><span class="colDark">{{userInfo.username}}</span></p>
+      <div class="aboutme" id="userInfo" style="display:none;">
+          <p><span class="colDark username">{{userInfo.username}}</span></p>
           {% if userInfo.isAdmin %}
-          <p><span class="colDanger">hello,admin.<a href="/admin">Manage</a></span></p>
+          <p><span class="colDanger info">hello,admin.<a href="/admin">Manage</a></span></p>
           {% else %}
           <p><span class="colDanger">hello {{userInfo.username}}, Welcome to my blog.</span></p>
           {% endif %}
-          <p><span class="colDark"><a href="javascript:;" id="logout">logout </a></span></p>
+          <p><span class="colDark logout"><a href="javascript:;">logout </a></span></p>
       </div>
      {% else %}
        <div  class="aboutme" id="loginBox" >
-        <div class="title"><span>login</span></div>
         <div class="line"><span class="colDark"></span><input type="text" id = "username1" placeholder="NAME"/><em></em></div>
         <div class="line"><span class="colDark"></span><input type="password" id= "password1" placeholder="PASSWORDS"/><em></em></div>
         <div class="line"><span class="colDark"></span><button id="loginBtn">login</button></div>
@@ -86,10 +90,11 @@
       </form>
     </div>
     <div class="cloud">
-      <h2 class="hometitle">Tags</h2>
+      <h2 class="hometitle">Categories</h2>
       <ul>
-        <a href="/">html5</a> 
-        <a href="/">SumSung</a> 
+        {% for cate in categories %}
+        <a href="/?category={{cate.id}}"> {{cate.name}}</a>
+        {% endfor %}
       </ul>
     </div>
   </div>
@@ -97,8 +102,10 @@
 </article>
 <div class="blank"></div>
 <footer>
-  <p>Theme:GoodMorning by Yang Qing</a></p>
+  <p>Theme:GoodMorning by Yang Qing</p>
+  <p>Create and Powered by Xuejun LIU, Ziqi WANG, Yuyao WEI © 2018 EFREI</p>
 </footer>
 <script src="../../public/js/nav.js"></script>
+
 </body>
 </html>

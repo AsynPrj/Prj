@@ -1,6 +1,8 @@
-{% extends 'layout.html' %}
+{% extends 'layout.html' %}{% block main%}
+<link rel="stylesheet" href="../../public/editor.md-master/examples/css/style.css" />
+<link rel="stylesheet" href="../../public/editor.md-master/css/editormd.css" />
 
-{% block main%}
+
 
 <ol class="breadcrumb">
         <li><a href="/">Home</a></li>
@@ -36,11 +38,28 @@
                 placeholder="please input the description of this blog"></textarea>
         </div>
 
-         <div class="form-group">
+         <!-- <div class="form-group">
             <label for="content">content</label> 
             <textarea name="content" id="content" class="form-control" rows="10" 
             placeholder="please input the content of this blog"></textarea>
-        </div>
+        </div> -->
+
+        <div class="form-group" id="my-editormd" >
+                <textarea id="content" name="content"  class="form-control" style="display:none;"># Content</textarea>
+            </div>
+            <script src="../../public/editor.md-master/examples/js/jquery.min.js"></script>
+            <script src="../../public/editor.md-master/editormd.js"></script>  
+            <script type="text/javascript">
+              $(function() {
+                  editormd("my-editormd", {//注意1：这里的就是上面的DIV的id属性值
+                      width   : "100%",
+                      height  : 720,
+                      syncScrolling : "single",
+                      path    : "../../public/editor.md-master/lib/",
+                      saveHTMLToTextarea : true//注意3：这个配置，方便post提交表单
+                  });
+              });
+            </script>
        
         <button type="submit" class="btn btn-default">Submit</button>
 </form>

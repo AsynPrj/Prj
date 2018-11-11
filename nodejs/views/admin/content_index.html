@@ -15,7 +15,10 @@
         <tr>
                 <th>ID</th>
                 <th>category</th>
-                 <th>title</th>             
+                <th>title</th>
+                <th>Author</th>  
+                <th>Create Time</th> 
+                <th>Views</th>          
                 <th>operation</th>
         </tr>
         
@@ -25,6 +28,11 @@
                 <td>{{content.category.name}}</td>
                 <!-- <td>{{content.category._id.toString()}}</td> -->
                 <td>{{content.title}}</td>
+                <td>{{content.user.username}}</td>
+                <!-- <td>{{content.user._id.toString()}}</td> -->
+                <!--from ../node_module/swig/lib/filters.js->date Y/y M/m D/d H/h I/i S/s,current time in E1U Zone-->
+                <td>{{content.addTime|date('d-M,Y H:i:s',-1*60-15)}}</td>   
+                <td>{{content.views}}</td> 
                 <td>
                         <a href="/admin/content/edit?id={{content._id.toString()}}">edit</a> |
                         <a href="/admin/content/delete?id={{content._id.toString()}}">delete</a>

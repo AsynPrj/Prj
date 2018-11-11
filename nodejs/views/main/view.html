@@ -1,14 +1,52 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    <h3 class="blogtitle"><a href="/view?contentid={{content._id.toString()}}">{{content.title}}</a></h3>
+<h1 class="t_nav">
+  <span>
+    <a href="/" class="n1">HOME</a> > 
+    <a href="/?category={{content.category.name}}" class="n2">{{content.category.name}}</a>
+     > {{content.title}}
+  </span>
+</h1>
+    <h3 class="blogtitle"><a href="/view/?contentid={{content._id.toString()}}">{{content.title}}</a></h3>
     <div class="bloginfo">
       <p>{{content.description}}</p>
     </div>
     <div class="autor">
       <span class="lm"><a href="/" title="CSS3|Html5" target="_blank" class="classname">CSS3|Html5</a></span>
-      <span class="dtime">{{content.addTime|date('YYYY:MMM:DD')}}</span>
+      <span class="dtime">{{content.addTime|date('d-M,Y',-1*60-15)}}</span>
       <span class="viewnum">Visitors:<a href="/">{{content.view}}</a></span>
     </div>
     <p>{{content.content}}</p>
+
+    <div class="infos">
+      <div class="newsview">
+        <h3 class="news_title">{{content.title}}</h3>
+        <div class="news_author">
+          <span class="au01"><a href="mailto:email">{{content.user.username}}</a></span>
+          <span class="au02">{{content.addTime|date('d-M,Y',-1*60-15)}}</span>
+          <span class="au03">Visitors:<b>{{content.view}}</b></span>
+        </div>
+        <div class="tags"><a href="/" target="_blank">HOME</a> &nbsp; <a href="/" target="_blank">{{content.category.name}}</a></div>
+        <div class="news_about"><strong>简介</strong>{{content.description}}</div>
+        <div class="news_infos">{{content.content}}</div>
+      </div>
+      <div class="share"> </div>
+      <div class="nextinfo">
+        <p>上一篇：<a href="/">前一篇标题</a></p>
+        <p>下一篇：<a href="/">后一篇标题</a></p>
+      </div>
+      <div class="otherlink">
+        <h2>相关文章</h2>
+        <ul>
+          <li><a href="/download/div/2018-04-22/815.html" title="html5个人博客模板《黑色格调》">html5个人博客模板《黑色格调》</a></li>
+        </ul>
+      </div>
+      <div class="news_pl">
+        <h2>文章评论</h2>
+        <ul>
+          <div class="gbko"> </div>
+        </ul>
+      </div>
+    </div>
 {% endblock %}

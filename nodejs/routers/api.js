@@ -55,38 +55,41 @@ router.post('/user/register',function(req,res,next){
         res.json(responseData);
     })
 });
-
+/** 
+ * login
+ */
 router.post('/user/login',function(req,res,next){
     var username= req.body.username;
     var password= req.body.password;
     if(username===''||password===''){
         responseData.code=1;
-        responseData.message="the username and password can't be empty";
+        responseData.message="username or password can't be empty";
         res.json(responseData);
         return;
     } 
-    //search for this user in the database
+    //search for this user in the database, if exist then login
     User.findOne({
         username:username,
         password:password
     }).then(function(userInfo){
         if(!userInfo){
             responseData.code=2;
-            responseData.message="wrong username or password";
+            responseData.message="username or password WRONG";
             res.json(responseData);
             return;
         }
-        responseData.message="login successful";
+        //login
+        responseData.message="login successful!";
         responseData.userInfo={
             _id:userInfo._id,
             username:userInfo.username
-        }
+        };
         req.cookies.set('userInfo',JSON.stringify({
             _id:userInfo._id,
             username:userInfo.username
         }));
         res.json(responseData);
-        return ;
+        return;
     });
 });
 

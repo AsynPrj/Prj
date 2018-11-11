@@ -24,7 +24,7 @@ $(function(){
             data:{
                 username : $registerBox.find('#username').val(),
                 password : $registerBox.find('#password').val(),
-                repassword : $registerBox.find('#repassword').val(),
+                repassword : $registerBox.find('#repassword').val()
             },
             dataType:'json',
             success: 
@@ -38,18 +38,17 @@ $(function(){
             error:
             function(){
                 console.log('error');
-            },
+            }
         });
     });
 
-    //login method
     $loginBox.find('#loginBtn').on('click',function(){
         $.ajax({
             type:'post',
             url:'/api/user/login',
             data:{
                 username : $loginBox.find('#username1').val(),
-                password : $loginBox.find('#password1').val(),
+                password : $loginBox.find('#password1').val()
             },
             dataType:'json',
             success: 
@@ -58,7 +57,7 @@ $(function(){
                 if(!data.code){
                  window.location.reload();                  
                 }
-            },
+            }
         });  
     });
     
@@ -71,7 +70,7 @@ $(function(){
                 if(!data.code){
                  window.location.reload();                  
                 }
-            },
+            }
         });  
     });
 

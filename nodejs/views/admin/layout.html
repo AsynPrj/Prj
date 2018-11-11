@@ -7,43 +7,34 @@
     <title>background</title>
     <link rel="stylesheet" href="/public/css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="/public/css/bootstrap-theme.min.css" type="text/css"/>
+    <link rel="stylesheet" href="/public/css/base.css" type="text/css"/>
+    <link rel="stylesheet" href="/public/css/index.css" type="text/css"/>
+    <link rel="stylesheet" href="/public/css/m.css" type="text/css"/>
     <script scr="/public/js/jquery-3.3.1.min.js"></script>
     <script scr="/public/js/bootstrap.min.js"></script>
+    <script scr="/public/js/index.js"></script>
 </head>
 <body>
-        <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                  <!-- Brand and toggle get grouped for better mobile display -->
-                  <div class="navbar-header">
-                
-                    <a class="navbar-brand" href="#">background management system</a>
-                  </div>
-              
-                  <!-- Collect the nav links, forms, and other content for toggling -->
-                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                      <li><a href="/admin/user">user management</a></li>
-                      <li><a href="/admin/category">category management</a></li>
-                      <li><a href="/admin/content">blog  management</a></li>
-                    </ul>
-         
-                    <ul class="nav navbar-nav navbar-right">
-                    
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{userInfo.username}} <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                          <li><a href="#">Logout</a></li>
-                          
-                        </ul>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-        </nav>
+        <!-- Brand and toggle get grouped for better mobile display -->
+    
+       <div class="tophead">
+        <div class="tophead navbar-header">
+          <nav class="menu" id="topnav">          
+            <ul>
+              <li><a href="/">HOME</a><li>
+              <li><a href="/admin/user">Users</a><li>
+              <li><a href="/admin/category">Categories</a><li>
+              <li><a href="/admin/content">Contents</a></li>  
+              <li><a href="javascript:;" id="logout">Logout</a></span></li>
+            </ul>
+         </nav>
+        </div>
+        </div>
+  
 
+     
         <div class="container-fluid">
-            {% block main%}{%endblock%}
-               
+            {% block main%}{%endblock%} 
         </div>
 
 

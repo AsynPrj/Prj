@@ -1,18 +1,16 @@
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
 // Distributed under an MIT license: http://codemirror.net/LICENSE
 
-(function(mod) {
-  if (typeof exports == "object" && typeof module == "object") // CommonJS
-    mod(require("../../lib/codemirror"));
-  else if (typeof define == "function" && define.amd) // AMD
-    define(["../../lib/codemirror"], mod);
-  else // Plain browser env
-    mod(CodeMirror);
-})(function(CodeMirror) {
-  "use strict";
+(function (mod) {
+  if (typeof exports === 'object' && typeof module === 'object') // CommonJS
+  { mod(require('../../lib/codemirror')) } else if (typeof define === 'function' && define.amd) // AMD
+  { define(['../../lib/codemirror'], mod) } else // Plain browser env
+  { mod(CodeMirror) }
+})(function (CodeMirror) {
+  'use strict'
 
-  function wordRegexp(words) {
-    return new RegExp('^((' + words.join(')|(') + '))\\b', 'i');
+  function wordRegexp (words) {
+    return new RegExp('^((' + words.join(')|(') + '))\\b', 'i')
   };
 
   var builtinArray = [
@@ -221,8 +219,8 @@
     'xregistered', 'xroi', 'xsq_test', 'xsurface', 'xvaredit',
     'xvolume', 'xvolume_rotate', 'xvolume_write_image',
     'xyouts', 'zlib_compress', 'zlib_uncompress', 'zoom', 'zoom_24'
-  ];
-  var builtins = wordRegexp(builtinArray);
+  ]
+  var builtins = wordRegexp(builtinArray)
 
   var keywordArray = [
     'begin', 'end', 'endcase', 'endfor',
@@ -231,60 +229,58 @@
     'foreach', 'goto', 'if', 'then', 'else',
     'repeat', 'until', 'switch', 'while',
     'do', 'pro', 'function'
-  ];
-  var keywords = wordRegexp(keywordArray);
+  ]
+  var keywords = wordRegexp(keywordArray)
 
-  CodeMirror.registerHelper("hintWords", "idl", builtinArray.concat(keywordArray));
+  CodeMirror.registerHelper('hintWords', 'idl', builtinArray.concat(keywordArray))
 
-  var identifiers = new RegExp('^[_a-z\xa1-\uffff][_a-z0-9\xa1-\uffff]*', 'i');
+  var identifiers = new RegExp('^[_a-z\xa1-\uffff][_a-z0-9\xa1-\uffff]*', 'i')
 
-  var singleOperators = /[+\-*&=<>\/@#~$]/;
-  var boolOperators = new RegExp('(and|or|eq|lt|le|gt|ge|ne|not)', 'i');
+  var singleOperators = /[+\-*&=<>\/@#~$]/
+  var boolOperators = new RegExp('(and|or|eq|lt|le|gt|ge|ne|not)', 'i')
 
-  function tokenBase(stream) {
+  function tokenBase (stream) {
     // whitespaces
-    if (stream.eatSpace()) return null;
+    if (stream.eatSpace()) return null
 
     // Handle one line Comments
     if (stream.match(';')) {
-      stream.skipToEnd();
-      return 'comment';
+      stream.skipToEnd()
+      return 'comment'
     }
 
     // Handle Number Literals
     if (stream.match(/^[0-9\.+-]/, false)) {
-      if (stream.match(/^[+-]?0x[0-9a-fA-F]+/))
-        return 'number';
-      if (stream.match(/^[+-]?\d*\.\d+([EeDd][+-]?\d+)?/))
-        return 'number';
-      if (stream.match(/^[+-]?\d+([EeDd][+-]?\d+)?/))
-        return 'number';
+      if (stream.match(/^[+-]?0x[0-9a-fA-F]+/)) { return 'number' }
+      if (stream.match(/^[+-]?\d*\.\d+([EeDd][+-]?\d+)?/)) { return 'number' }
+      if (stream.match(/^[+-]?\d+([EeDd][+-]?\d+)?/)) { return 'number' }
     }
 
     // Handle Strings
-    if (stream.match(/^"([^"]|(""))*"/)) { return 'string'; }
-    if (stream.match(/^'([^']|(''))*'/)) { return 'string'; }
+    if (stream.match(/^"([^"]|(""))*"/)) { return 'string' }
+    if (stream.match(/^'([^']|(''))*'/)) { return 'string' }
 
     // Handle words
-    if (stream.match(keywords)) { return 'keyword'; }
-    if (stream.match(builtins)) { return 'builtin'; }
-    if (stream.match(identifiers)) { return 'variable'; }
+    if (stream.match(keywords)) { return 'keyword' }
+    if (stream.match(builtins)) { return 'builtin' }
+    if (stream.match(identifiers)) { return 'variable' }
 
     if (stream.match(singleOperators) || stream.match(boolOperators)) {
-      return 'operator'; }
+      return 'operator'
+    }
 
     // Handle non-detected items
-    stream.next();
-    return null;
+    stream.next()
+    return null
   };
 
-  CodeMirror.defineMode('idl', function() {
+  CodeMirror.defineMode('idl', function () {
     return {
-      token: function(stream) {
-        return tokenBase(stream);
+      token: function (stream) {
+        return tokenBase(stream)
       }
-    };
-  });
+    }
+  })
 
-  CodeMirror.defineMIME('text/x-idl', 'idl');
-});
+  CodeMirror.defineMIME('text/x-idl', 'idl')
+})

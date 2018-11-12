@@ -1,5 +1,5 @@
-'use strict';
-//submit comments
+'use strict'
+// submit comments
 // $('#messageBtn').on('click',function(){
 //     $.ajax({
 //         type: 'POST',

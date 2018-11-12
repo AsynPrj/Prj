@@ -1,4 +1,5 @@
 {% extends 'layout.html' %}{% block content %}
+<link rel="stylesheet" href="css/font-awesome.min.css">
 
   {% for content in contents %}
   <li href="/view?contentid={{content.id}}">
@@ -7,11 +8,11 @@
       <p>{{content.description}}</p>
     </div>
     <div class="autor">
-      <p>
-      <span class="author">{{content.user.username}}</span>
-      <span class="lm"><a href="/?category={{content.category._id.toString()}}" title="CSS3|Html5" target="_blank" class="classname">{{content.category.name}}</a></span>
-      <span class="dtime">{{content.addTime|date('d-M,Y',-1*60-15)}}</span>
-      <span class="viewnum">Visitors:<a href="/">{{content.views}}</a></span>
+      <a>
+      <span><a class="icon iconuser"></a>{{content.user.username}}</span>
+      <span><a href="/?category={{content.category._id.toString()}}"><a class="icon icontag"></a>{{content.category.name}}</a></span>
+      <span><a class="icon icontime"></a>{{content.addTime|date('d-M,Y',-1*60-15)}}</span>
+      <span><a class="icon iconviews"></a><a href="/">{{content.views}}</a></span>
       <span class="readmore"><a href="/view?contentid={{content.id}}">ReadMore</a></span></div>
       </p>
     </li>

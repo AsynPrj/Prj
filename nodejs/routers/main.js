@@ -25,7 +25,7 @@ router.use(function(req,res,next){
 /**
  * home page 
  * */
-router.get('/',function(req,res,next){
+router.get('/',async function(req,res,next){
 
     data.category=req.query.category || '';
     data.page=Number(req.query.page || 1 );
@@ -61,7 +61,7 @@ router.get('/',function(req,res,next){
     }); 
 });
 
-router.get('/view',function(req,res,next){
+router.get('/view',async function(req,res,next){
     var id=req.query.contentid || '';
     //console.log(req.query.contentid);
     Content.findOne({

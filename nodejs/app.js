@@ -8,18 +8,7 @@
   var bodyParser=require('body-parser');
   var Cookies= require('cookies');
   var User=require('./models/User');
-  var marked = require('marked');
-    //marked setting
-    marked.setOptions({
-        renderer: new marked.Renderer(),
-        gfm: true,
-        tables: true,
-        breaks: false,
-        pedantic: false,
-        sanitize: false,
-        smartLists: true,
-        smartypants: false
-     });
+  
   //var multer=require('multer'); //use to upload file by browser
   //var fs = require('fs');
   

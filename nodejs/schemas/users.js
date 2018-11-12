@@ -7,5 +7,8 @@ module.exports = mongoose.Schema({
   isAdmin: {
     type: Boolean,
     default: false
-  }
+  },
+  email: String,
+  emailCode: String,
+  createdTime: Number
 })

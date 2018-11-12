@@ -1,4 +1,5 @@
-'use strict';
+'use strict'
+
 $(function () {
   var $loginBox = $('#loginBox');
   var $registerBox = $('#registerBox');
@@ -23,6 +24,7 @@ $(function () {
       type: 'post',
       url: '/api/user/register',
       data: {
+        email: $registerBox.find('#email').val(),
         username: $registerBox.find('#username').val(),
         password: $registerBox.find('#password').val(),
         repassword: $registerBox.find('#repassword').val()
@@ -74,4 +76,23 @@ $(function () {
             }
     });
   });
-});
+
+  $registerBox.find('#sendemailBtn').on('click', function () {
+    $.ajax({
+      type: 'post',
+      url: '/api/genEmailCode',
+      data: {
+        email: $registerBox.find('#email').val()
+      },
+      dataType: 'json',
+      success:
+            function (data) {
+              window.confirm('successful in sending register code, please check your email')
+            },
+      error:
+            function () {
+              console.log('error')
+            }
+    })
+  })
+})

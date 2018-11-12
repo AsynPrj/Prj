@@ -1,52 +1,70 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<h1 class="t_nav">
-  <span>
-    <a href="/" class="n1">HOME</a> > 
-    <a href="/?category={{content.category.name}}" class="n2">{{content.category.name}}</a>
-     > {{content.title}}
-  </span>
-</h1>
-    <h3 class="blogtitle"><a href="/view/?contentid={{content._id.toString()}}">{{content.title}}</a></h3>
-    <div class="bloginfo">
-      <p>{{content.description}}</p>
-    </div>
-    <div class="autor">
-      <span class="lm"><a href="/" title="CSS3|Html5" target="_blank" class="classname">CSS3|Html5</a></span>
-      <span class="dtime">{{content.addTime|date('d-M,Y',-1*60-15)}}</span>
-      <span class="viewnum">Visitors:<a href="/">{{content.view}}</a></span>
-    </div>
-    <p>{{content.content}}</p>
-
-    <div class="infos">
       <div class="newsview">
-        <h3 class="news_title">{{content.title}}</h3>
         <div class="news_author">
-          <span class="au01"><a href="mailto:email">{{content.user.username}}</a></span>
-          <span class="au02">{{content.addTime|date('d-M,Y',-1*60-15)}}</span>
-          <span class="au03">Visitors:<b>{{content.view}}</b></span>
+            <a class="time">{{content.addTime|date('d-M,Y',-1*60-15)}}&nbsp;</a>
+            <a class="author"><strong>&nbsp;@Author{{content.user.username}}&nbsp;</strong></a>
+            <a href="/?category={{category}}">&nbsp;#{{content.category.name}}</a>
+          </div>
+        <h1 class="news_title">{{content.title}}</h1>
+        <div class="news_about"><strong>DESCRIPTION</strong>&nbsp;{{content.description}}</div>
+        <div class="news_infos">
+            <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+            <script src="https://cdn.bootcss.com/showdown/1.3.0/showdown.min.js"></script>
+            <script type="text/javascript"> 
+                var content ='${{content.content}}'; //使用el表达式获取后台返回的markdown内容
+                var converter = new showdown.Converter(); //初始化转换器
+                var htmlcontent  = converter.makeHtml(content); //将MarkDown转为html格式的内容
+                $("#article .article-entry").html(htmlcontent);//添加到 div 中 显示出来
+            </script> 
+          {{content.content}}
         </div>
-        <div class="tags"><a href="/" target="_blank">HOME</a> &nbsp; <a href="/" target="_blank">{{content.category.name}}</a></div>
-        <div class="news_about"><strong>简介</strong>{{content.description}}</div>
-        <div class="news_infos">{{content.content}}</div>
       </div>
-      <div class="share"> </div>
       <div class="nextinfo">
-        <p>上一篇：<a href="/">前一篇标题</a></p>
-        <p>下一篇：<a href="/">后一篇标题</a></p>
+        <p>PREV &nbsp;<a href="/">Prievious POST TITLE</a></p>
+        <p>NEXT &nbsp;<a href="/">Next POST TITLE</a></p>
       </div>
       <div class="otherlink">
-        <h2>相关文章</h2>
+        <h2>Related Posts</h2>
         <ul>
-          <li><a href="/download/div/2018-04-22/815.html" title="html5个人博客模板《黑色格调》">html5个人博客模板《黑色格调》</a></li>
+          <li><a href="/" title="">Related Post TITLE</a></li>
         </ul>
       </div>
       <div class="news_pl">
-        <h2>文章评论</h2>
-        <ul>
-          <div class="gbko"> </div>
-        </ul>
+        <h2>Comments</h2>
+          <div class="gbko"> 
+          {% if userInfo._id %}
+              <div class="line"><textarea id="messageContent" class="input_text"></textarea></div>
+              <input type="hidden" id="contentid" value="{{content.id}}"/>
+              <div class="line"><button id="messageBtn" class="Btn">Submit</button></div>
+          {% else %}    
+              <div class="line"><a>Please login.</a></div>
+          {% endif %}
+          </div>
+          <div id="comments" class="comment">
+              <a class="time">Jun 3,2018&nbsp;</a><a class="author">@Author</a>
+              <p>Content</p>
+          </div>
       </div>
+<!-- <script src="../public/js/comment.js"></script> -->
+{% endblock %}
+
+
+{% block cloud %}
+  <div class="cloud">
+      <h2 class="hometitle">Categories</h2>
+      <ul>
+          {% for cate in categories %}
+          {% if category==cate.id %}
+            <a href="/?category={{cate.id}}"><b>{{cate.name}}</b></a>
+          {% else %}
+            <a href="/?category={{cate.id}}">{{cate.name}}</a>
+          {% endif %}
+          {% endfor %}
+      </ul>
     </div>
+  </div>
+ 
+
 {% endblock %}

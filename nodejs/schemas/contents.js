@@ -41,5 +41,10 @@ module.exports=mongoose.Schema({
         type:String,
         default:''    
     }
+    //comments
+    // comments:{
+    //     type:Array,
+    //     default:[]
+    // }
 });
 

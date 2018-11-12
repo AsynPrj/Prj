@@ -11,7 +11,7 @@
 .picshow li .font::after { top: 8%; right: 10%; bottom: 8%; left: 10%; border-right: 1px solid #fff; border-left: 1px solid #fff; -webkit-transform: scale(1, 0); -moz-transform: scale(1, 0); -o-transform: scale(1, 0); transform: scale(1, 0); -webkit-transform-origin: 100% 0; -moz-transform-origin: 100% 0; -o-transform-origin: 100% 0; transform-origin: 100% 0 }
 .picshow li .font h3 { font-size: 16px; font-weight: 700; text-align: center; width: 80%; position: absolute; top: 50%; left: 10%; background: rgba(0,0,0,0.5); line-height: 1.9; -webkit-transition: all .5s ease-in-out; -moz-transition: all .5s ease-in-out; -o-transition: all .5s ease-in-out; -ms-transition: all .5s ease-in-out; transition: all .5s ease-in-out; overflow: hidden; opacity: 0 }
 .picshow li:hover .font h3 { top: 45%; opacity: 1 }
-article { width: 1200px; margin: auto;position:relative;min-height: 670px; }
+article { width: 1200px; margin: auto;position:relative;min-height: 750px; }
 /* rightbox */
 .blogs { float: left; width: 70%; overflow: hidden; }
 .blogs li { margin-bottom: 10px; overflow: hidden; padding: 20px; background: #fff }
@@ -93,18 +93,15 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
 .picinfo h3 { border-bottom: #ccc 1px solid; padding: 20px 0; margin: 0 20px }
 .picinfo span { padding: 20px; display: block; color: #666 }
 .infos { float: left; width: 70%; overflow: hidden; background: #FFF; margin: 20px 0 }
-.newsview { padding: 0 30px }
+.newsview { padding: 0 30px; background-color:#FFF;}
 .intitle { line-height: 40px; height: 40px; font-size: 14px; ; border-bottom: #000 2px solid; }
 .intitle a { font-weight: normal; }
-.news_title { font-size: 24px; font-weight: normal; padding: 20px 0; color: #333; }
 .news_author { width: 100%; color: #999; line-height: 18px; }
 .news_author span { margin-right: 10px; padding-left: 20px }
 .au01 { background: url(../images/author2.png) no-repeat left center }
 .au02 { background: url(../images/date.png) no-repeat left center }
 .au03 b { color: #333; padding: 0 5px }
 .au04 { font-weight: normal; }
-.news_about { color: #888888; border: 1px solid #F3F3F3; padding: 10px; margin: 20px auto 15px auto; line-height: 23px; background: none repeat 0 0 #F6F6F6; }
-.news_about strong { color: #38485A; font-weight: 400 !important; font-size: 13px; padding-right: 8px; }
 .news_content { line-height: 24px; font-size: 14px; }
 .news_content p { overflow: hidden; padding-bottom: 4px; padding-top: 6px; word-wrap: break-word; }
 .tags a { background: #F4650E; padding: 3px 8px; margin: 0 5px 0 0; color: #fff; }
@@ -113,17 +110,17 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
 .news_infos p { margin-bottom: 10px }
 .news_infos img { max-width: 650px; height: auto; }
 .share { padding: 20px; }
-.nextinfo { line-height: 24px; width: 100%; background: #FFF; border-radius: 10px; overflow: hidden; margin: 20px 0 }/*��һƪ��һƪ*/
+.nextinfo { line-height: 24px; width: 100%; background: #FFF; overflow: hidden; margin: 20px 0 }/*��һƪ��һƪ*/
 .nextinfo p { padding: 4px 10px; border-radius: 5px; }
 .nextinfo a:hover { color: #000; text-decoration: underline }
 /*otherlinks*/
-.otherlink, .xzsm, .ffsm { width: 100%; background: #FFF; border-radius: 10px; overflow: hidden; margin: 20px 0 }
+.otherlink, .xzsm, .ffsm { width: 100%; background: #FFF; overflow: hidden; margin: 20px 0 }
 .otherlink h2 { border-bottom: #000 2px solid; line-height: 40px; font-size: 14px; background: url(../images/5794.png) left 10px center no-repeat; padding-left: 40px; color: #000 }
 .otherlink ul { margin: 10px 0 }
 .otherlink li { line-height: 24px; height: 24px; display: block; width: 290px; float: left; overflow: hidden; margin-right: 30px; padding-left: 10px; }
 .otherlink li a:hover { text-decoration: underline; color: #000 }
 /*recent posts*/
-.news_pl { margin: 10px 0; width: 100%; background: #FFF; border-radius: 10px; overflow: hidden; margin: 20px 0 }
+.news_pl { margin: 10px 0; width: 100%; background: #FFF; overflow: hidden; margin: 20px 0 }
 .news_pl h2 { background: url(../images/newsbg03.png) no-repeat left 10px center; border-bottom: #000 2px solid; line-height: 40px; font-size: 14px; padding-left: 30px; color: #000 }
 .xzsm ul, .ffsm ul { padding: 20px; line-height: 24px; border-top: 6px solid #a6b5c5; }
 .bt-blue { display: block; line-height: 40px; height: 40px; background: #1e8ec5; width: 100px; text-align: center; }
@@ -133,7 +130,7 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
 .ad img { width: 100% }
 .leftbox { width: 70%; float: left; overflow: hidden; }
 .rightbox { width: 28%; float: right; overflow: hidden; }
-.aboutme { overflow: hidden; background: #fff;padding: 20px; margin: 20px 0  }
+.aboutme { overflow: hidden; background: #fff;padding: 20px; }
 .ab_con { line-height: 30px; padding: 10px; }
 .ab_con p { background: #f6f6f6; margin: 5px 0; padding-left: 10px; border-radius: 5px; text-shadow: rgba(255, 255, 255, 0.3) 0px 1px 0px; }
 .ab_box .avatar { width: 100px; height: 100px; overflow: hidden; border-radius: 50px; margin: 10px auto 0; }
@@ -151,3 +148,19 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
 #previous a:hover {background: #FC9D9A ; color: #fff; border:none;}
 #next a:hover {background:#FC9D9A ; color: #fff; border:none;}
 
+.input_text{color: rgb(153, 153, 153);margin:5px 0}
+.Btn {font:100%;background-color: #333; color: #FFF; float:right; width: 25%; border: none; cursor: pointer; height: 28px; line-height: 28px; text-align:center;margin:5px 0}
+.colWarning { display:block;}
+.textCenter{ display:block;color:#FC9D9A; float:left;  }
+
+/*view*/
+.newsview{display:block;padding:10px 10px 10px 10px;font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Hiragino Sans GB,Droid Sans Fallback,Microsoft YaHei,sans-serif;}
+.time { color: rgba(0,0,0,.42);font-size: 13px;margin-bottom:.1em;}
+.author { text-decoration: none;font-weight: 700;}
+.news_title{font-size: 2.2em;font-weight: 900;margin-top: .42em;margin-bottom: .1em;letter-spacing: .02em;line-height: 1.1;}
+.news_about{color: rgba(0,0,0,.42);font-size: 1.42em;font-weight: 300;}
+.new_infos{ margin-top: 1.64em;line-height: 1.62;font-family: Droid Serif,PingFang SC,Hiragino Sans GB,Droid Sans Fallback,Microsoft YaHei,sans-serif;}
+
+/*Comments*/
+#comments {color: rgb(153, 153, 153); margin:10px 0;padding:10px 10px 10px 10px;width:95%;height:100px;text-align: start;}
+.comment{display:block;float:left;padding:10px 10px 10px 10px;margin:10px 0;}

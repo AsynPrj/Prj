@@ -3,6 +3,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/User');
 var swig = require('swig');
+var Content = require('../models/Content');
 var responseData;
 
 router.use(function(req,res,next){
@@ -92,10 +93,31 @@ router.post('/user/login',function(req,res,next){
         return;
     });
 });
-
+/**
+ * logout */
 router.get('/user/logout',function(req,res,next){
     req.cookies.set('userInfo',null);
     res.json(responseData);
 });
+/**
+ * comments */
+// router.post('/comment/post',function(req,res){
+//     var contentId=req.body.contentid;
+//     var postData={
+//         username:req.userInfo.username,
+//         postTime:new Date(),
+//         content:req.body.content
+//     };
+//     Content.findOne({
+//         _id:contentId
+//     }).then(function(content){
+//         content.comments.push(postData);
+//         return content.save();
+//     }).then(function(newContent){
+//         responseData.message='Comment success!';
+//         res.json(responseData);
+//     });
+
+// });
 
 module.exports=router;

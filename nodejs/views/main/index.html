@@ -1,9 +1,8 @@
 {% extends 'layout.html' %}{% block content %}
 
-
   {% for content in contents %}
-  <li>
-    <h3 class="blogtitle"><a href="/view/?contentId={{content._id.toString()}}">{{content.title}}</a></h3>
+  <li href="/view?contentid={{content.id}}">
+    <h3 class="blogtitle"><a href="/view?contentid={{content.id}}">{{content.title}}</a></h3>
     <div class="bloginfo">
       <p>{{content.description}}</p>
     </div>
@@ -13,7 +12,7 @@
       <span class="lm"><a href="/?category={{content.category._id.toString()}}" title="CSS3|Html5" target="_blank" class="classname">{{content.category.name}}</a></span>
       <span class="dtime">{{content.addTime|date('d-M,Y',-1*60-15)}}</span>
       <span class="viewnum">Visitors:<a href="/">{{content.views}}</a></span>
-      <span class="readmore"><a href="/view/?contentId={{content._id.toSting()}}">ReadMore</a></span></div>
+      <span class="readmore"><a href="/view?contentid={{content.id}}">ReadMore</a></span></div>
       </p>
     </li>
   {% endfor %}
@@ -21,18 +20,40 @@
   <nav id="pagelist" aria-label="pages">
       <ul id="pager">
         {% if page>1 %}
-        <li id="previous"><a href="/?page={{page-1}}">&nbsp;&larr; Prev&nbsp;</a></li>
+        <li id="previous"><a href="/?category={{category}}&page={{page-1}}">&nbsp;&larr; Prev&nbsp;</a></li>
         {% else %}
         <li id="previous">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
         {% endif %}
+        {%if pages===0 %}
+        <li>&nbsp;Empty&nbsp;</li>
+        {% else %}
         <li>&nbsp;Articles:{{count}}&nbsp;|&nbsp; Pages:{{page}}/{{pages}}&nbsp;</li>
+        {% endif %}
         {% if page>=pages %}
         <li id="next">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
         {% else %}
-        <li id="next"><a href="/?page={{page+1}}">&nbsp;Next &rarr;&nbsp;</a></li>
+        <li id="next"><a href="/?category={{category}}&page={{page+1}}">&nbsp;Next &rarr;&nbsp;</a></li>
         {% endif%}
       </ul>
   </nav>
 
 
 {% endblock %} 
+
+{% block cloud %}
+  <div class="cloud">
+      <h2 class="hometitle">Categories</h2>
+      <ul>
+          {% for cate in categories %}
+          {% if category==cate.id %}
+            <a href="/?category={{cate.id}}"><b>{{cate.name}}</b></a>
+          {% else %}
+            <a href="/?category={{cate.id}}">{{cate.name}}</a>
+          {% endif %}
+          {% endfor %}
+      </ul>
+    </div>
+  </div>
+ 
+
+{% endblock %}

@@ -1,3 +1,4 @@
+'use strict';
 $(function(){
     var $loginBox=$('#loginBox');
     var $registerBox=$('#registerBox');

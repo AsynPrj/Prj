@@ -14,7 +14,7 @@ router.use(function(req,res,next){
         next();
     });
 
-router.post('/user/register',function(req,res,next){
+router.post('/user/register',async function(req,res,next){
     var username= req.body.username;
     var password= req.body.password;
     var repassword= req.body.repassword;
@@ -59,7 +59,7 @@ router.post('/user/register',function(req,res,next){
 /** 
  * login
  */
-router.post('/user/login',function(req,res,next){
+router.post('/user/login',async function(req,res,next){
     var username= req.body.username;
     var password= req.body.password;
     if(username===''||password===''){

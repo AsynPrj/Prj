@@ -13,7 +13,7 @@ router.use (function(req,res,next){
     }
     next();
 });
-router.get('/',function(req,res,next){
+router.get('/',async function(req,res,next){
     res.render('admin/index',{
         userInfo:req.userInfo
     });
@@ -43,7 +43,7 @@ router.get('/user',function(req,res,next){
 });
 
 //see all categories
-router.get('/category',function(req,res,next){
+router.get('/category',async function(req,res,next){
     var page=Number(req.query.page||1);
     var limit=10;  
     var pages=0;
@@ -75,7 +75,7 @@ router.get('/category/add',function(req,res,next){
 });
 
 // save a category
-router.post('/category/add',function(req,res,next){
+router.post('/category/add',async function(req,res,next){
     var name= req.body.name || '';
     if(name===''){
         res.render('admin/error',{
@@ -108,7 +108,7 @@ router.post('/category/add',function(req,res,next){
 });
 
 //edit a category
-router.get('/category/edit',function(req,res,next){
+router.get('/category/edit',async function(req,res,next){
     var id = req.query.id;
     Category.findOne({
         _id:id,
@@ -129,7 +129,7 @@ router.get('/category/edit',function(req,res,next){
 });
 
 //save the edit of category
-router.post('/category/edit',function(req,res,next){
+router.post('/category/edit',async function(req,res,next){
     var id= req.query.id || '';
     var name= req.body.name || '';
     Category.findOne({
@@ -179,7 +179,7 @@ router.post('/category/edit',function(req,res,next){
 
 
 //delete a category
-router.get('/category/delete',function(req,res,next){
+router.get('/category/delete',async function(req,res,next){
     var id= req.query.id || '';
     Category.remove({
        _id:id
@@ -193,7 +193,7 @@ router.get('/category/delete',function(req,res,next){
 });
 
 //homepage of the blog content
-router.get('/content',function(req,res,next){
+router.get('/content',async function(req,res,next){
    
     var page=Number(req.query.page||1);
     var limit=10;  
@@ -221,7 +221,7 @@ router.get('/content',function(req,res,next){
 });         
 
 //add blog content
-router.get('/content/add',function(req,res,next){
+router.get('/content/add',async function(req,res,next){
     //get the category
     Category.find().sort({_id:-1}).then(function(categories){
         res.render('admin/content_add',{
@@ -232,7 +232,7 @@ router.get('/content/add',function(req,res,next){
 });
 
 //save the content added
-router.post('/content/add',function(req,res,next){
+router.post('/content/add',async function(req,res,next){
     if(req.body.category ===''){
         res.render('admin/error',{
             userInfo:req.userInfo,
@@ -266,7 +266,7 @@ router.post('/content/add',function(req,res,next){
 
 
 //edit a content
-router.get('/content/edit',function(req,res,next){
+router.get('/content/edit',async function(req,res,next){
     var id = req.query.id||'';
     var categories=[];
     //get the category
@@ -298,7 +298,7 @@ router.get('/content/edit',function(req,res,next){
 
 
 //save the content edited
-router.post('/content/edit',function(req,res,next){
+router.post('/content/edit',async function(req,res,next){
     var id = req.query.id||'';
     if(req.body.category===''){
         res.render('admin/error',{
@@ -330,7 +330,7 @@ router.post('/content/edit',function(req,res,next){
 });
 
 //delete a content
-router.get('/content/delete',function(req,res,next){
+router.get('/content/delete',async function(req,res,next){
     var id= req.query.id || '';
     Content.remove({
        _id:id 

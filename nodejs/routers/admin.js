@@ -1,17 +1,17 @@
-'use strict';
-var express = require('express');
-var router = express.Router();
-var swig = require('swig');
-var User=require('../models/User');
-var Category=require('../models/Category');
-var Content=require('../models/Content');
+'use strict'
+var express = require('express')
+var router = express.Router()
+var swig = require('swig')
+var User=require('../models/User')
+var Category=require('../models/Category')
+var Content=require('../models/Content')
 
 router.use (function(req,res,next){
     if(!req.userInfo.isAdmin){
-        res.send('sorry, only the admin can enter this page');
-        return;
+        res.send('sorry, only the admin can enter this page')
+        return
     }
-    next();
+    next()
 });
 router.get('/',async function(req,res,next){
     res.render('admin/index',{
@@ -21,14 +21,14 @@ router.get('/',async function(req,res,next){
 
 //see all the users
 router.get('/user',function(req,res,next){
-    var page=Number(req.query.page||1);
-    var limit=10;  
-    var pages=0;
+    var page=Number(req.query.page||1)
+    var limit=10
+    var pages=0
     User.count().then(function(count){
-        pages=Math.ceil(count/limit);
-        page=Math.min(page,pages);
-        page=Math.max(page,1);
-        var skip=(page-1)*limit;
+        pages=Math.ceil(count/limit)
+        page=Math.min(page,pages)
+        page=Math.max(page,1)
+        var skip=(page-1)*limit
         User.find().limit(limit).skip(skip).then(function(users){       
             res.render('admin/user_index',{
              userInfo:req.userInfo,
@@ -37,21 +37,21 @@ router.get('/user',function(req,res,next){
              pages:pages,
              count:count,
              limit:limit
-            });
-        });
-    }); 
-});
+            })
+        })
+    })
+})
 
 //see all categories
 router.get('/category',async function(req,res,next){
-    var page=Number(req.query.page||1);
-    var limit=10;  
-    var pages=0;
+    var page=Number(req.query.page||1)
+    var limit=10
+    var pages=0
     Category.count().then(function(count){
-        pages=Math.ceil(count/limit);
-        page=Math.min(page,pages);
-        page=Math.max(page,1);
-        var skip=(page-1)*limit;
+        pages=Math.ceil(count/limit)
+        page=Math.min(page,pages)
+        page=Math.max(page,1)
+        var skip=(page-1)*limit
         Category.find().sort({_id:-1}).limit(limit).skip(skip).then(function(categories){       
             res.render('admin/category_index',{
              userInfo:req.userInfo,
@@ -76,7 +76,7 @@ router.get('/category/add',function(req,res,next){
 
 // save a category
 router.post('/category/add',async function(req,res,next){
-    var name= req.body.name || '';
+    var name= req.body.name || ''
     if(name===''){
         res.render('admin/error',{
             userInfo:req.userInfo,
@@ -95,17 +95,17 @@ router.post('/category/add',async function(req,res,next){
             }else{
                 return new Category({
                     name:name
-                }).save();
+                }).save()
         }
     }).then(function(newCategory){
         res.render('admin/success',{
             userInfo:req.userInfo,
             message:'succeed in saving this category.',
             url: 'admin/category'
-        });
-    });
+        })
+    })
   
-});
+})
 
 //edit a category
 router.get('/category/edit',async function(req,res,next){
@@ -130,8 +130,8 @@ router.get('/category/edit',async function(req,res,next){
 
 //save the edit of category
 router.post('/category/edit',async function(req,res,next){
-    var id= req.query.id || '';
-    var name= req.body.name || '';
+    var id= req.query.id || ''
+    var name= req.body.name || ''
     Category.findOne({
         _id:id
     }).then(function(category){    
@@ -147,12 +147,12 @@ router.post('/category/edit',async function(req,res,next){
                         userInfo:req.userInfo,
                         message:'succeed in editing this category.',
                         url:'/admin/category'
-                    }); 
+                    })
                 }else{
                     return Category.findOne({
                         _id:{$ne:id},
                         name:name
-                    });
+                    })
                 }
             }
     }).then(function(sameCategory){
@@ -160,22 +160,22 @@ router.post('/category/edit',async function(req,res,next){
             res.render('admin/error',{
                 userInfo:req.userInfo,
                 message:'category with this name has already exist.',
-            });
+            })
             return Promise.reject();             
         }else{
             return Category.update(
                 {_id:id},
                 {name:name}
-            );           
+            )          
         }
     }).then(function(){
         res.render('admin/success',{
             userInfo:req.userInfo,
             message:'succeed in editing this category.',
             url:'/admin/category'
-        }); 
+        })
     })
-});
+})
 
 
 //delete a category
@@ -200,10 +200,10 @@ router.get('/content',async function(req,res,next){
     var pages=0;
 
     Content.count().then(function(count){
-        pages=Math.ceil(count/limit);
-        page=Math.min(page,pages);
-        page=Math.max(page,1);
-        var skip=(page-1)*limit; 
+        pages=Math.ceil(count/limit)
+        page=Math.min(page,pages)
+        page=Math.max(page,1)
+        var skip=(page-1)*limit
         Content.find().sort({_id:-1}).limit(limit).skip(skip).populate(['category','user']).sort({
             addTime: -1
         }).then(function(contents){  
@@ -237,15 +237,15 @@ router.post('/content/add',async function(req,res,next){
         res.render('admin/error',{
             userInfo:req.userInfo,
             message:'category cannot be empty.',
-        });
-        return;
+        })
+        return
     }
     if(req.body.title ===''){
         res.render('admin/error',{
             userInfo:req.userInfo,
             message:'title cannot be empty.',
-        });
-        return;
+        })
+        return
     } 
      new Content(
        {
@@ -260,36 +260,36 @@ router.post('/content/add',async function(req,res,next){
         userInfo:req.userInfo,
         message:'succeed in saving this content.',
         url:'/admin/content'
-        });
-   });            
-});
+        })
+   })        
+})
 
 
 //edit a content
 router.get('/content/edit',async function(req,res,next){
-    var id = req.query.id||'';
-    var categories=[];
+    var id = req.query.id||''
+    var categories=[]
     //get the category
     Category.find().sort({_id:-1}).then(function(rs){
-        categories=rs;
+        categories=rs
         return Content.findOne({
             _id:id
-        }).populate('category');
+        }).populate('category')
     }).then(function(content){
             if(!content){
                 res.render('admin/error',{
                     userInfo:req.userInfo,
                     message:'this content does not exist.'
-                }); 
+                })
                 return Promise.reject();         
                 }else{
                     res.render('admin/content_edit',{
                         userInfo:req.userInfo,
                         content:content,
                         categories:categories
-                    });                  
+                    })            
             }
-        }); 
+        })
         // res.render('admin/content_edit',{
         //     userInfo:req.userInfo,
         //     categories:categories,
@@ -299,20 +299,20 @@ router.get('/content/edit',async function(req,res,next){
 
 //save the content edited
 router.post('/content/edit',async function(req,res,next){
-    var id = req.query.id||'';
+    var id = req.query.id||''
     if(req.body.category===''){
         res.render('admin/error',{
             userInfo:req.userInfo,
             message:'category cannot be empty.',
-        });
-        return;
+        })
+        return
     }
     if(req.body.title===''){
         res.render('admin/error',{
             userInfo:req.userInfo,
             message:'title cannot be empty.',
-        });
-        return;
+        })
+        return
     }
    Content.update(
        {_id:id},
@@ -331,7 +331,7 @@ router.post('/content/edit',async function(req,res,next){
 
 //delete a content
 router.get('/content/delete',async function(req,res,next){
-    var id= req.query.id || '';
+    var id= req.query.id || ''
     Content.remove({
        _id:id 
     }).then(function(rs){      
@@ -339,8 +339,8 @@ router.get('/content/delete',async function(req,res,next){
                 userInfo:req.userInfo,
                 message:'delete successful.',
                 url:'/admin/content'
-            });            
-    }); 
-});
+            })            
+    })
+})
 
 module.exports=router;

@@ -4,7 +4,7 @@
       <div class="newsview">
         <div class="news_author">
             <a class="time">{{content.addTime|date('d-M,Y',-1*60-15)}}&nbsp;</a>
-            <a class="author"><strong>&nbsp;@Author{{content.user.username}}&nbsp;</strong></a>
+            <a class="author"><strong>&nbsp;@{{content.user.username}}&nbsp;</strong></a>
             <a href="/?category={{category}}">&nbsp;#{{content.category.name}}</a>
         </div>
         <h1 class="news_title">{{content.title}}</h1>

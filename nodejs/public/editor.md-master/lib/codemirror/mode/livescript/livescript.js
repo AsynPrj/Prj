@@ -6,81 +6,78 @@
  * https://github.com/duralog/CodeMirror
  */
 
-(function(mod) {
-  if (typeof exports == "object" && typeof module == "object") // CommonJS
-    mod(require("../../lib/codemirror"));
-  else if (typeof define == "function" && define.amd) // AMD
-    define(["../../lib/codemirror"], mod);
-  else // Plain browser env
-    mod(CodeMirror);
-})(function(CodeMirror) {
-  "use strict";
+(function (mod) {
+  if (typeof exports === 'object' && typeof module === 'object') // CommonJS
+  { mod(require('../../lib/codemirror')) } else if (typeof define === 'function' && define.amd) // AMD
+  { define(['../../lib/codemirror'], mod) } else // Plain browser env
+  { mod(CodeMirror) }
+})(function (CodeMirror) {
+  'use strict'
 
-  CodeMirror.defineMode('livescript', function(){
-    var tokenBase = function(stream, state) {
-      var next_rule = state.next || "start";
+  CodeMirror.defineMode('livescript', function () {
+    var tokenBase = function (stream, state) {
+      var next_rule = state.next || 'start'
       if (next_rule) {
-        state.next = state.next;
-        var nr = Rules[next_rule];
+        state.next = state.next
+        var nr = Rules[next_rule]
         if (nr.splice) {
           for (var i$ = 0; i$ < nr.length; ++i$) {
-            var r = nr[i$], m;
+            var r = nr[i$]; var m
             if (r.regex && (m = stream.match(r.regex))) {
-              state.next = r.next || state.next;
-              return r.token;
+              state.next = r.next || state.next
+              return r.token
             }
           }
-          stream.next();
-          return 'error';
+          stream.next()
+          return 'error'
         }
         if (stream.match(r = Rules[next_rule])) {
           if (r.regex && stream.match(r.regex)) {
-            state.next = r.next;
-            return r.token;
+            state.next = r.next
+            return r.token
           } else {
-            stream.next();
-            return 'error';
+            stream.next()
+            return 'error'
           }
         }
       }
-      stream.next();
-      return 'error';
-    };
+      stream.next()
+      return 'error'
+    }
     var external = {
-      startState: function(){
+      startState: function () {
         return {
           next: 'start',
           lastToken: null
-        };
+        }
       },
-      token: function(stream, state){
-        while (stream.pos == stream.start)
-          var style = tokenBase(stream, state);
+      token: function (stream, state) {
+        while (stream.pos == stream.start) { var style = tokenBase(stream, state) }
         state.lastToken = {
           style: style,
           indent: stream.indentation(),
           content: stream.current()
-        };
-        return style.replace(/\./g, ' ');
-      },
-      indent: function(state){
-        var indentation = state.lastToken.indent;
-        if (state.lastToken.content.match(indenter)) {
-          indentation += 2;
         }
-        return indentation;
+        return style.replace(/\./g, ' ')
+      },
+      indent: function (state) {
+        var indentation = state.lastToken.indent
+        if (state.lastToken.content.match(indenter)) {
+          indentation += 2
+        }
+        return indentation
       }
-    };
-    return external;
-  });
+    }
+    return external
+  })
 
-  var identifier = '(?![\\d\\s])[$\\w\\xAA-\\uFFDC](?:(?!\\s)[$\\w\\xAA-\\uFFDC]|-[A-Za-z])*';
-  var indenter = RegExp('(?:[({[=:]|[-~]>|\\b(?:e(?:lse|xport)|d(?:o|efault)|t(?:ry|hen)|finally|import(?:\\s*all)?|const|var|let|new|catch(?:\\s*' + identifier + ')?))\\s*$');
-  var keywordend = '(?![$\\w]|-[A-Za-z]|\\s*:(?![:=]))';
+  var identifier = '(?![\\d\\s])[$\\w\\xAA-\\uFFDC](?:(?!\\s)[$\\w\\xAA-\\uFFDC]|-[A-Za-z])*'
+  var indenter = RegExp('(?:[({[=:]|[-~]>|\\b(?:e(?:lse|xport)|d(?:o|efault)|t(?:ry|hen)|finally|import(?:\\s*all)?|const|var|let|new|catch(?:\\s*' + identifier + ')?))\\s*$')
+  var keywordend = '(?![$\\w]|-[A-Za-z]|\\s*:(?![:=]))'
   var stringfill = {
     token: 'string',
     regex: '.+'
-  };
+  }
   var Rules = {
     start: [
       {
@@ -260,21 +257,20 @@
         next: 'key'
       }, stringfill
     ]
-  };
+  }
   for (var idx in Rules) {
-    var r = Rules[idx];
+    var r = Rules[idx]
     if (r.splice) {
       for (var i = 0, len = r.length; i < len; ++i) {
-        var rr = r[i];
+        var rr = r[i]
         if (typeof rr.regex === 'string') {
-          Rules[idx][i].regex = new RegExp('^' + rr.regex);
+          Rules[idx][i].regex = new RegExp('^' + rr.regex)
         }
       }
     } else if (typeof rr.regex === 'string') {
-      Rules[idx].regex = new RegExp('^' + r.regex);
+      Rules[idx].regex = new RegExp('^' + r.regex)
     }
   }
 
-  CodeMirror.defineMIME('text/x-livescript', 'livescript');
-
-});
+  CodeMirror.defineMIME('text/x-livescript', 'livescript')
+})

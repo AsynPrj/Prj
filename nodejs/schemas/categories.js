@@ -1,7 +1,6 @@
-'use strict';
-var mongoose=  require('mongoose');
+'use strict'
+var mongoose = require('mongoose')
 
-module.exports=mongoose.Schema({
-    name:String,
-});
-
+module.exports = mongoose.Schema({
+  name: String
+})

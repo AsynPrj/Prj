@@ -1,6 +1,5 @@
-'use strict';
-var mongoose= require('mongoose');
+'use strict'
+var mongoose = require('mongoose')
 
-var categoriesSchema= require('../schemas/categories');
-module.exports=mongoose.model('Category',categoriesSchema);
-
+var categoriesSchema = require('../schemas/categories')
+module.exports = mongoose.model('Category', categoriesSchema)

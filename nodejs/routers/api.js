@@ -2,9 +2,10 @@
 var express = require('express')
 var router = express.Router()
 var User = require('../models/User')
+var Content = require('../models/Content')
 var responseData
 
-router.use(function (req, res, next) {
+router.use(function (_req, _res, next) {
   responseData = {
     code: 0,
     message: ''
@@ -12,7 +13,7 @@ router.use(function (req, res, next) {
   next()
 })
 
-router.post('/user/register', async function (req, res, next) {
+router.post('/user/register', async function (req, res, _next) {
   var username = req.body.username
   var password = req.body.password
   var repassword = req.body.repassword
@@ -49,7 +50,7 @@ router.post('/user/register', async function (req, res, next) {
       password: password
     })
     return user.save()
-  }).then(function (newUserInfo) {
+  }).then(function (_newUserInfo) {
     responseData.message = 'register successful'
     res.json(responseData)
   })
@@ -57,7 +58,7 @@ router.post('/user/register', async function (req, res, next) {
 /**
  * login
  */
-router.post('/user/login', async function (req, res, next) {
+router.post('/user/login', async function (req, res, _next) {
   var username = req.body.username
   var password = req.body.password
   if (username === '' || password === '') {
@@ -92,29 +93,32 @@ router.post('/user/login', async function (req, res, next) {
 })
 /**
  * logout */
-router.get('/user/logout', function (req, res, next) {
+router.get('/user/logout', function (req, res, _next) {
   req.cookies.set('userInfo', null)
   res.json(responseData)
 })
-/**
- * comments */
-// router.post('/comment/post',function(req,res){
-//     var contentId=req.body.contentid;
-//     var postData={
-//         username:req.userInfo.username,
-//         postTime:new Date(),
-//         content:req.body.content
-//     };
-//     Content.findOne({
-//         _id:contentId
-//     }).then(function(content){
-//         content.comments.push(postData);
-//         return content.save();
-//     }).then(function(newContent){
-//         responseData.message='Comment success!';
-//         res.json(responseData);
-//     });
 
-// });
+/**
+ * comments upload */
+router.post('/comment/post', function (req, res) {
+  // the id of post content
+  var contentId = req.body.contentid || ''
+  var postData = {
+    username: req.userInfo.username,
+    postTime: new Date(),
+    content: req.body.content
+  }
+  // get this post content's Info
+  Content.findOne({
+    _id: contentId
+  }).then(function (content) {
+    content.comments.push(postData)
+    return content.save()
+  }).then(function (newContent) {
+    responseData.message = 'Comment success!'
+    responseData.data = newContent
+    res.json(responseData)
+  })
+})
 
 module.exports = router

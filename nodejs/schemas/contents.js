@@ -37,10 +37,10 @@ module.exports = mongoose.Schema({
   content: {
     type: String,
     default: ''
-  }
+  },
   // comments
-  // comments:{
-  //     type:Array,
-  //     default:[]
-  // }
+  comments: {
+    type: Array,
+    default: []
+  }
 })

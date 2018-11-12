@@ -1,6 +1,4 @@
 {% extends 'layout.html' %}{% block content %}
-<!-- <link rel="stylesheet" href="../../public/editor.md-master/examples/css/style.css" />
-<link rel="stylesheet" href="../../public/editor.md-master/css/editormd.preview.css" /> -->
 
       <div class="newsview">
         <div class="news_author">
@@ -11,63 +9,29 @@
         <h1 class="news_title">{{content.title}}</h1>
         <div class="news_about"><strong>DESCRIPTION</strong>&nbsp;{{content.description}}</div>
         <div class="news_infos">
-          <!-- <div class="form-group" id="my-editormd" >
-            <textarea id="content" name="content" style="display:none;">{{content.content}}</textarea>
-           </div>
-            <script src="../../public/editor.md-master/examples/js/jquery.min.js"></script> 
+          <div id="test-editormd-view">
+              <textarea style="display:none;" name="test-editormd-markdown-doc">{{content.content}}</textarea>               
+          </div>
+            <script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
             <script src="../../public/editor.md-master/lib/marked.min.js"></script>
             <script src="../../public/editor.md-master/lib/prettify.min.js"></script>
-            
             <script src="../../public/editor.md-master/lib/raphael.min.js"></script>
             <script src="../../public/editor.md-master/lib/underscore.min.js"></script>
             <script src="../../public/editor.md-master/lib/sequence-diagram.min.js"></script>
-            <script src="../../public/editor.md-master/../lib/flowchart.min.js"></script>
+            <script src="../../public/editor.md-master/lib/flowchart.min.js"></script>
             <script src="../../public/editor.md-master/lib/jquery.flowchart.min.js"></script>
-    
             <script src="../../public/editor.md-master/editormd.js"></script>
             <script type="text/javascript">
-                $(function() {
-                    var testEditormdView, testEditormdView2;
-                    
-                    $.get("test.md", function(markdown) {
-                        
-                testEditormdView = editormd.markdownToHTML("test-editormd-view", {
-                            markdown        : markdown ,//+ "\r\n" + $("#append-test").text(),
-                            //htmlDecode      : true,       // 开启 HTML 标签解析，为了安全性，默认不开启
-                            htmlDecode      : "style,script,iframe",  // you can filter tags decode
-                            //toc             : false,
-                            tocm            : true,    // Using [TOCM]
-                            //tocContainer    : "#custom-toc-container", // 自定义 ToC 容器层
-                            //gfm             : false,
-                            //tocDropdown     : true,
-                            // markdownSourceCode : true, // 是否保留 Markdown 源码，即是否删除保存源码的 Textarea 标签
-                            emoji           : true,
-                            taskList        : true,
-                            tex             : true,  // 默认不解析
-                            flowChart       : true,  // 默认不解析
-                            sequenceDiagram : true,  // 默认不解析
-                        });
-                        
-                        //console.log("返回一个 jQuery 实例 =>", testEditormdView);
-                        
-                        // 获取Markdown源码
-                        //console.log(testEditormdView.getMarkdown());
-                        
-                        //alert(testEditormdView.getMarkdown());
-                    });
-                        
-                    testEditormdView2 = editormd.markdownToHTML("test-editormd-view2", {
-                        htmlDecode      : "style,script,iframe",  // you can filter tags decode
-                        emoji           : true,
-                        taskList        : true,
-                        tex             : true,  // 默认不解析
-                        flowChart       : true,  // 默认不解析
-                        sequenceDiagram : true,  // 默认不解析
-                    });
+                testEditormdView2 = editormd.markdownToHTML("test-editormd-view", {
+                    htmlDecode      : "style,script,iframe",  // you can filter tags decode
+                    emoji           : true,
+                    taskList        : true,
+                    tex             : true,  // 默认不解析
+                    flowChart       : true,  // 默认不解析
+                    sequenceDiagram : true,  // 默认不解析
                 });
-            </script> -->
-          {{content.content}}
-        </div>
+            </script>
+  
       </div>
       <div class="nextinfo">
         <p>PREV &nbsp;<a href="/">Prievious POST TITLE</a></p>

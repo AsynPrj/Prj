@@ -28,7 +28,7 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
 .blogpic img { width: 100% }
 .bloginfo p { color: #888; line-height: 24px }
 .more { font-size: 14px; }
-.sidebar { float: right; width: 28%; overflow: hidden; position: relative }
+.sidebar { float: right; width: 28%; overflow: hidden; }
 .about { background: #FFF url(../images/banner.png) no-repeat top center; overflow: hidden; }
 .avatar { margin: 80px auto 20px; width: 100px }
 .avatar img { width: 100px; border-radius: 50% }
@@ -159,7 +159,7 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
 .author { text-decoration: none;font-weight: 700;}
 .news_title{font-size: 2.2em;font-weight: 900;margin-top: .42em;margin-bottom: .1em;letter-spacing: .02em;line-height: 1.1;}
 .news_about{color: rgba(0,0,0,.42);font-size: 1.42em;font-weight: 300;}
-.new_infos{ margin-top: 1.64em;line-height: 1.62;font-family: Droid Serif,PingFang SC,Hiragino Sans GB,Droid Sans Fallback,Microsoft YaHei,sans-serif;}
+.new_infos{ display:block;margin-top: 1.64em;line-height: 1.62;font-family: Droid Serif,PingFang SC,Hiragino Sans GB,Droid Sans Fallback,Microsoft YaHei,sans-serif;}
 
 /*Comments*/
 #comments {color: rgb(153, 153, 153); margin:10px 0;padding:10px 10px 10px 10px;width:95%;height:100px;text-align: start;}

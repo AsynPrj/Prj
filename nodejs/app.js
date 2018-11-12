@@ -9,9 +9,6 @@ var bodyParser = require('body-parser')
 var Cookies = require('cookies')
 var User = require('./models/User')
 
-// var multer=require('multer'); //use to upload file by browser
-// var fs = require('fs');
-
 // create application named 'app' => NodeJS Http.createSever();
 var app = express()
 

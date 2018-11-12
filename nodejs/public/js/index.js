@@ -74,5 +74,17 @@ $(function(){
             }
         });  
     });
-
-})
+    
+        //logout method
+        $logoutBackend.on('click',function(){
+            $.ajax({          
+                url:'/api/user/logout',
+                success: 
+                function(data){
+                    if(!data.code){
+                     window.location.replace("https://localhost:8888/");                  
+                    }
+                }
+            });  
+        });
+});

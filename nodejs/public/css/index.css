@@ -59,16 +59,10 @@ h2.blogtitle { line-height: 30px; height: 30px; margin: 10px 10px 10px 20px; }
 .hometitle:after { content: ''; position: absolute; height: 2px; width: 0; right: inherit; top: inherit; left: 0; bottom: -1px; background: #333; transition: 2s ease all; }
 .hometitle:hover:after { width: 100%; transition: 2s ease all; }
 .paihang { background: #FFF; overflow: hidden; margin-bottom: 20px }
-.paihang ul { padding: 10px; }
-.paihang ul li { border-bottom: solid 1px #EAEAEA; font-size: 14px; margin: 0 0 10px 0; padding: 0 0 10px 0; overflow: hidden }
-.paihang ul li b { height: 30px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: block; }
-.paihang ul li p { line-height: 24px; color: #888 }
-.paihang ul li a:hover { color: #000; }
-.paihang ul li:hover p { color: #000; }
-.paihang ul li:hover b a { color: #000; }
-.paihang li i { width: 100px; height: 90px; overflow: hidden; display: block; border: #efefef 1px solid; float: left; margin-right: 10px }
-.paihang li img { height: 100%; margin: auto; -moz-transition: all .5s ease; -webkit-transition: all .5s ease; transition: all .5s ease; }
-.paihang ul li:hover i img { transform: scale(1.1) }
+.paihang ul { padding: 30px;}
+.paihang ul li {  padding: 3px 11px; margin: 10px 10px 0 0;min-height:20px;border-bottom: solid 1px #EAEAEA; font-size: 12px; margin: 0 0 10px 0; padding: 10px 10px 10px 10px; overflow: hidden;text-align:center;}
+.paihang ul li a:hover {width:50px;height:30px;background:#FC9D9A ; color: #fff; border:none; }
+.paihang ul li a {color: #096; border:none; padding:5px 5px 5px 5px;}
 /*links*/
 .links { width: 100%; background: #FFF; overflow: hidden; }
 .links ul { padding: 20px; overflow: hidden }
@@ -154,7 +148,7 @@ h2.blogtitle { line-height: 30px; height: 30px; margin: 10px 10px 10px 20px; }
 .textCenter{ display:block;color:#FC9D9A; float:left;  }
 
 /*view*/
-.newsview{display:block;padding:20px 20px 20px 20px;font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Hiragino Sans GB,Droid Sans Fallback,Microsoft YaHei,sans-serif;}
+.newsview{display:block;padding:30px 30px 30px 30px;font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Hiragino Sans GB,Droid Sans Fallback,Microsoft YaHei,sans-serif;}
 .time { color: rgba(0,0,0,.42);font-size: 13px;margin-bottom:.1em;}
 .author { text-decoration: none;font-weight: 700;}
 .news_title{font-size: 2.2em;font-weight: 900;margin-top: .42em;margin-bottom: .1em;letter-spacing: .02em;line-height: 1.1;}
@@ -164,6 +158,45 @@ h2.blogtitle { line-height: 30px; height: 30px; margin: 10px 10px 10px 20px; }
 /*Comments*/
 #comments {color: rgb(153, 153, 153); margin:10px 0;padding:10px 10px 10px 10px;width:95%;height:100px;text-align: start;}
 .comment{display:block;float:left;padding:10px 10px 10px 10px;margin:10px 0;}
+
+.x-top {
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #d8e4e6;
+    padding-top: 10px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+ol, ul {
+    list-style: none;
+}
+.fy {
+    width: 50%;
+    overflow: hidden;
+    height: 25px;
+    font-size: 14px;
+}
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+.zhs {
+    color: #cdcdcd;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.txtRight {
+    text-align: right;
+}
+
+a {
+    color: #096;
+    text-decoration: none;
+}
+
+
 
 /* fa icon
 .icon{

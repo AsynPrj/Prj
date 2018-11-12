@@ -35,16 +35,17 @@
   
       </div>
       <div class="nextinfo">
-        <p>PREV &nbsp;<a href="/">Prievious POST TITLE</a></p>
-        <p>NEXT &nbsp;<a href="/">Next POST TITLE</a></p>
+        <ul class="x-top clearfix">
+                <div class="fy fl zhs"><span class="jg35">PREVIOUS:</span></div>
+                <div class="fy fr txtRight zhs"><span class="jg352">NEXT:</span></div>
+                <div class="fy fl">
+                  <a class="PREVIOUS" href="/view?contentid={{prevcontent.id}}" title="">&larr;&nbsp;{{prevcontent.title}} </a> 
+                </div>
+                <div class="fy fr txtRight">
+                   <a class="NEXT" href="/view?contentid={{nextcontent.id}}" title="">{{nextcontent.title}}  &nbsp;&rarr;</a>
+                 </div> 
+              </ul>
       </div>
-      <div class="otherlink">
-        <h2>Related Posts</h2>
-        <ul>
-          <li><a href="/" title="">Related Post TITLE</a></li>
-        </ul>
-      </div>
-      <div class="news_pl">
         <h2>Comments</h2>
           <div class="gbko"> 
           {% if userInfo._id %}
@@ -78,4 +79,19 @@
           {% endfor %}
       </ul>
   </div>
+  <div class="paihang">
+        <h2 class="hometitle">Related Posts</h2>
+        <ul>
+         {% for cont in contents %}
+            {% if cont==content.id %}
+            <li><b><a href="/view?contentid={{cont.id}}" title="{{cont.title}}">{{cont.title}}</a></b></li>
+            {% else %}
+            <li><a href="/view?contentid={{cont.id}}" title="{{cont.title}}">{{cont.title}}</a></li>
+              <!-- <p>{{content.description}}</p> -->
+            {% endif %}
+         {% endfor %}
+        </ul>
+    </div>
+    
+    
 {% endblock %}

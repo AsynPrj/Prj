@@ -111,7 +111,7 @@ router.post('/genEmailCode', function (req, res, next) {
           res.send(resBody)
         })
       })
-    } else if (doc && doc.username === 'tmp') { 
+    } else if (doc && doc.username === 'tmp') {
       // if you click to request the verification code again in 30 minutes, the code in the database will be updated
       emailCode = genRandomCode()
       createdTime = Date.now()
@@ -168,13 +168,8 @@ router.use(function (_req, _res, next) {
   }
   next()
 })
-
-<<<<<<< HEAD
-router.post('/user/register', async function (req, res, _next) {
-=======
 router.post('/user/register', async function (req, res, next) {
   var email = req.body.email
->>>>>>> 9652666b66f415f2eb0b9b371e506423d4c80556
   var username = req.body.username
   var password = req.body.password
   var repassword = req.body.repassword
@@ -196,26 +191,7 @@ router.post('/user/register', async function (req, res, next) {
     res.json(responseData)
     return
   }
-<<<<<<< HEAD
-  // search for this username in the database
-  User.findOne({
-    username: username
-  }).then(function (userInfo) {
-    if (userInfo) {
-      responseData.code = 4
-      responseData.message = 'this username has already exist'
-      res.json(responseData)
-      return
-    }
-    var user = new User({
-      username: username,
-      password: password
-    })
-    return user.save()
-  }).then(function (_newUserInfo) {
-=======
   User.update({ email: email }, { username: username, password: password }, function (newUserInfo) {
->>>>>>> 9652666b66f415f2eb0b9b371e506423d4c80556
     responseData.message = 'register successful'
     res.json(responseData)
   })

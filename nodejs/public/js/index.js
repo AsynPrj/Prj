@@ -1,8 +1,4 @@
 'use strict'
-<<<<<<< HEAD
-=======
-
->>>>>>> 9652666b66f415f2eb0b9b371e506423d4c80556
 $(function () {
   var $loginBox = $('#loginBox')
   var $registerBox = $('#registerBox')
@@ -77,8 +73,6 @@ $(function () {
                 window.location.reload()
               }
             }
-<<<<<<< HEAD
-=======
     });
   });
 
@@ -98,7 +92,6 @@ $(function () {
             function () {
               console.log('error')
             }
->>>>>>> 9652666b66f415f2eb0b9b371e506423d4c80556
     })
   })
 })

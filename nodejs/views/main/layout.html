@@ -34,8 +34,6 @@
             {%else%}
             {%endif%}
               <li><a href="javascript:;" id="logout">LOGOUT</a></li>
-        {% else %}
-              <li><a href="/login">Login</a></li>
         {%endif%}
       </ul>
     </nav>
@@ -56,10 +54,11 @@
       {% else %}
        <div  class="aboutme" id="loginBox" >
         <div class="line"><input type="text" class="input_text" id = "username1" placeholder="NAME"/></div>
+       
         <div class="line"><input type="password" class="input_text"id= "password1" placeholder="PASSWORDS"/></div>
         <div class="line"><button id="loginBtn" class="Btn">login</button></div>
+        <div class="line textCenter"><a href="javascript:;" class="colMint">don't have an account? register now!</a></div>
         <div class="line textCenter"><p class = "colWarning"></p></div>
-        <div class="line"><a href="javascript:;" class="colMint">Don't havs an account? Register, now.</a></div>
      
       </div>
       <!-- <div  class="aboutme" id="registerBox" >
@@ -77,14 +76,16 @@
           <div class="line"><input type="password" class="input_text" id= "repassword" placeholder="CONFIRM PASSWORDS"/></div>
           <div class="line">
               <input type="text" class="input_text" id= "email" placeholder="email"/>
-              <button id="sendemailBtn" class="Btn">emailCode</button>
+              <button id="sendemailBtn" class="Btn">sendEmail</button>
             </div>
           <div class="line">
             <input type="text" class="input_text" id= "emailCode" placeholder="emailCode"/>
           </div>
-          <div class="line"><button id="registerBtn" class="Btn">register</button></div>
+          <div class="line"><button id="registerBtn" class="Btn">register</button></div> 
+          <!-- <button class="Btn"><a href="javascript:;" class="colMint">login</a></button> -->
+          <div class="line textCenter"><a href="javascript:;" class="colMint">already have an account? login now!</a></div>
           <div class="line  textCenter"><p class = "colWarning"></p></div>	
-          <div class="line" textCenter><a href="javascript:;" class="colMint">Already have an account? Login now.</a></div>
+
           
       </div>
       {%endif%}

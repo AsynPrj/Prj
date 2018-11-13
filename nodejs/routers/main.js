@@ -3,10 +3,9 @@ var express = require('express')
 var router = express.Router()
 var Category = require('../models/Category')
 var Content = require('../models/Content')
-var async = require('async')
 
 var data
-var where = {}
+
 /**
  * public structures */
 router.use(function (req, _res, next) {
@@ -34,7 +33,7 @@ router.get('/', async function (req, res, _next) {
   data.count = 0
   data.limit = 10
   data.pages = 0
-
+  var where = {}
   if (data.category !== '') {
     where.category = data.category
   }
@@ -74,7 +73,7 @@ router.get('/view', async function (req, res, _next) {
     // add Visitor's number
     content.views++
     content.save()
-
+    var where = {}
     if (content.category !== '') {
       where.category = content.category
     }

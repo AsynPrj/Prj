@@ -2,6 +2,7 @@
 var express = require('express')
 var router = express.Router()
 var User = require('../models/User')
+var Content = require('../models/Content')
 var responseData
 var nodemailer = require('nodemailer')
 // create reusable transporter object using the default SMTP transport
@@ -110,7 +111,7 @@ router.post('/genEmailCode', function (req, res, next) {
           res.send(resBody)
         })
       })
-    } else if (doc && doc.username === 'tmp') { 
+    } else if (doc && doc.username === 'tmp') {
       // if you click to request the verification code again in 30 minutes, the code in the database will be updated
       emailCode = genRandomCode()
       createdTime = Date.now()
@@ -160,14 +161,13 @@ router.post('/genEmailCode', function (req, res, next) {
   })
 })
 
-router.use(function (req, res, next) {
+router.use(function (_req, _res, next) {
   responseData = {
     code: 0,
     message: ''
   }
   next()
 })
-
 router.post('/user/register', async function (req, res, next) {
   var email = req.body.email
   var username = req.body.username
@@ -199,7 +199,7 @@ router.post('/user/register', async function (req, res, next) {
 /**
  * login
  */
-router.post('/user/login', async function (req, res, next) {
+router.post('/user/login', async function (req, res, _next) {
   var username = req.body.username
   var password = req.body.password
   if (username === '' || password === '') {
@@ -234,29 +234,32 @@ router.post('/user/login', async function (req, res, next) {
 })
 /**
  * logout */
-router.get('/user/logout', function (req, res, next) {
+router.get('/user/logout', function (req, res, _next) {
   req.cookies.set('userInfo', null)
   res.json(responseData)
 })
-/**
- * comments */
-// router.post('/comment/post',function(req,res){
-//     var contentId=req.body.contentid;
-//     var postData={
-//         username:req.userInfo.username,
-//         postTime:new Date(),
-//         content:req.body.content
-//     };
-//     Content.findOne({
-//         _id:contentId
-//     }).then(function(content){
-//         content.comments.push(postData);
-//         return content.save();
-//     }).then(function(newContent){
-//         responseData.message='Comment success!';
-//         res.json(responseData);
-//     });
 
-// });
+/**
+ * comments upload */
+router.post('/comment/post', function (req, res) {
+  // the id of post content
+  var contentId = req.body.contentid || ''
+  var postData = {
+    username: req.userInfo.username,
+    postTime: new Date(),
+    content: req.body.content
+  }
+  // get this post content's Info
+  Content.findOne({
+    _id: contentId
+  }).then(function (content) {
+    content.comments.push(postData)
+    return content.save()
+  }).then(function (newContent) {
+    responseData.message = 'Comment success!'
+    responseData.data = newContent
+    res.json(responseData)
+  })
+})
 
 module.exports = router

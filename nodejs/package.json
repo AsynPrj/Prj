@@ -1,7 +1,6 @@
 {
   "name": "nodejs",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "standard --fix",
@@ -23,5 +22,6 @@
   },
   "devDependencies": {
     "standard": "^12.0.1"
-  }
+  },
+  "description": ""
 }

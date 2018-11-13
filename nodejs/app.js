@@ -8,13 +8,12 @@ var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
 var Cookies = require('cookies')
 var User = require('./models/User')
-
+var path = require('path')
 // create application named 'app' => NodeJS Http.createSever();
 var app = express()
 
 // static file hosting
-app.use('/public', express.static(__dirname + '/public'))
-
+app.use('/public', express.static(path.join(__dirname,'/public')))
 // define the type of this mudule engine which is 'html'
 app.engine('html', swig.renderFile)
 

@@ -1,22 +1,25 @@
 'use strict'
+<<<<<<< HEAD
+=======
 
+>>>>>>> 9652666b66f415f2eb0b9b371e506423d4c80556
 $(function () {
-  var $loginBox = $('#loginBox');
-  var $registerBox = $('#registerBox');
-  var $userInfo = $('#userInfo');
-  var $logout = $('#logout');
+  var $loginBox = $('#loginBox')
+  var $registerBox = $('#registerBox')
+
+  var $logout = $('#logout')
 
   // default show login box and hide the register box
-  $loginBox.show();
-  $registerBox.hide();
+  $loginBox.show()
+  $registerBox.hide()
   // switch from the login box and register box
   $loginBox.find('a').on('click', function () {
-    $registerBox.show();
-    $loginBox.hide();
+    $registerBox.show()
+    $loginBox.hide()
   })
   $registerBox.find('a').on('click', function () {
-    $loginBox.show();
-    $registerBox.hide();
+    $loginBox.show()
+    $registerBox.hide()
   })
   // register method
   $registerBox.find('#registerBtn').on('click', function () {
@@ -34,16 +37,16 @@ $(function () {
             function (data) {
               $registerBox.find('.colWarning').html(data.message)
               if (!data.code) {
-                $loginBox.show();
-                $registerBox.hide();
+                $loginBox.show()
+                $registerBox.hide()
               }
             },
       error:
             function () {
-              console.log('error');
+              console.log('error')
             }
-    });
-  });
+    })
+  })
 
   $loginBox.find('#loginBtn').on('click', function () {
     $.ajax({
@@ -58,12 +61,12 @@ $(function () {
             function (data) {
               $loginBox.find('.colWarning').html(data.message)
               if (!data.code) {
-                window.location.reload();
+                window.location.reload()
               }
             }
-        });  
-    });
-    
+    })
+  })
+
   // logout method
   $logout.on('click', function () {
     $.ajax({
@@ -71,9 +74,11 @@ $(function () {
       success:
             function (data) {
               if (!data.code) {
-                window.location.reload();
+                window.location.reload()
               }
             }
+<<<<<<< HEAD
+=======
     });
   });
 
@@ -93,6 +98,7 @@ $(function () {
             function () {
               console.log('error')
             }
+>>>>>>> 9652666b66f415f2eb0b9b371e506423d4c80556
     })
   })
 })
